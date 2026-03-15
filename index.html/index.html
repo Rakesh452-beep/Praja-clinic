@@ -1,0 +1,3101 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ప్రజా వైద్యశాల — Praja Vaidyasala</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+Telugu:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   DESIGN SYSTEM — Deep Teal · Aqua · Coral
+   Cormorant Garamond (display) + Outfit (body)
+   Premium teal-aqua + coral accent + clean surfaces
+═══════════════════════════════════════════════ */
+:root{
+  /* Primary — Deep Teal */
+  --e1:#021f2b;--e2:#052e40;--e3:#074060;--e4:#0a6080;--e5:#0fa3b1;--e6:#3dd6e0;
+  /* Coral Accent */
+  --gold:#e85d4a;--gold2:#f47c6a;--gold3:#ffb3a7;
+  /* Surface */
+  --cream:#f4fafb;--cream2:#e8f6f8;--cream3:#d0edf1;
+  /* Text */
+  --slate:#021f2b;--slate2:#074060;--slate3:#3a7a8a;--slate4:#7ab5c0;
+  /* Status */
+  --red:#c0392b;--red2:#e74c3c;--amber:#e67e22;
+  /* Base */
+  --bg:#f0f8fa;--card:#fff;--text:#021f2b;--muted:#3a7a8a;--border:#b8dfe5;
+  --shadow:0 2px 20px rgba(2,31,43,.08);--shadow2:0 8px 40px rgba(2,31,43,.15);--shadow3:0 20px 60px rgba(2,31,43,.22);
+  --R:16px;--Rs:10px;
+  --transition:.28s cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+.T{font-family:'Noto Sans Telugu',sans-serif}
+.D{font-family:'Cormorant Garamond',serif}
+::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#7ab5c0;border-radius:4px}
+/* Touch targets — min 44px for accessibility */
+button,a,.btn,.nav-tab,.tc-btn,.rc,.qi,.ma-btn{min-height:36px;touch-action:manipulation}
+
+/* ═══ GLOBAL COMPONENTS ═══ */
+.card{
+  background:var(--card);border-radius:var(--R);
+  box-shadow:var(--shadow);border:1px solid var(--border);
+  transition:box-shadow var(--transition),transform var(--transition);
+}
+.card:hover{box-shadow:var(--shadow2)}
+.ct{
+  font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;
+  color:var(--e2);margin-bottom:16px;display:flex;align-items:center;gap:9px;
+  letter-spacing:-.01em;
+}
+.ct::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--border),transparent);margin-left:6px}
+
+/* FORMS */
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg.full{grid-column:1/-1}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+label{font-size:.68rem;font-weight:600;color:var(--slate3);text-transform:uppercase;letter-spacing:.8px}
+input,select,textarea{
+  border:1.5px solid var(--border);border-radius:var(--Rs);padding:10px 13px;
+  font-family:'Outfit',sans-serif;font-size:.88rem;color:var(--text);
+  background:var(--cream);transition:all var(--transition);outline:none;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--e5);background:#fff;
+  box-shadow:0 0 0 3px rgba(15,163,177,.1);
+}
+textarea{resize:vertical;min-height:72px}
+
+/* BUTTONS */
+.btn{
+  border:none;border-radius:var(--Rs);padding:10px 20px;
+  font-family:'Outfit',sans-serif;font-weight:600;font-size:.88rem;
+  cursor:pointer;transition:all var(--transition);
+  display:inline-flex;align-items:center;gap:7px;letter-spacing:.01em;
+}
+.btn-em{
+  background:linear-gradient(135deg,var(--e3),var(--e5));color:#fff;
+  box-shadow:0 4px 16px rgba(10,96,128,.3);
+}
+.btn-em:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(10,96,128,.4)}
+.btn-em:active{transform:translateY(0)}
+.btn-coral{
+  background:linear-gradient(135deg,var(--gold),var(--e5));color:var(--e1);
+  box-shadow:0 4px 14px rgba(232,93,74,.3);
+}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(232,93,74,.45)}
+.btn-red{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff}
+.btn-red:hover{transform:translateY(-2px)}
+.btn-slate{background:var(--e2);color:#fff}
+.btn-slate:hover{background:var(--e3);transform:translateY(-1px)}
+.btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--slate)}
+.btn-outline:hover{border-color:var(--e5);color:var(--e4);background:rgba(15,163,177,.05)}
+.bsm{padding:5px 12px;font-size:.74rem}
+.bfw{width:100%;justify-content:center}
+
+/* PILLS */
+.pill{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:.68rem;font-weight:600;letter-spacing:.02em}
+.pe{background:rgba(15,163,177,.12);color:var(--e3)}
+.pb{background:rgba(15,163,177,.1);color:var(--e3)}
+.pr{background:rgba(192,57,43,.1);color:var(--red)}
+.po{background:rgba(230,126,34,.1);color:var(--amber)}
+.pg{background:rgba(15,163,177,.12);color:var(--e3)}
+
+/* DIVIDER */
+.div{height:1px;background:var(--border);margin:13px 0}
+
+/* SECTION HEADING */
+.sh{
+  padding:24px 32px 0;
+  font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;
+  color:var(--e2);display:flex;align-items:center;gap:14px;letter-spacing:-.02em;
+}
+.sh::after{content:'';flex:1;height:1.5px;background:linear-gradient(to right,var(--e5),transparent);margin-left:8px;opacity:.4}
+
+/* MODAL ANIMATIONS */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes boxIn{from{opacity:0;transform:translate(-50%,-50%) scale(.92)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+
+/* ═══ PREMIUM GOLD ANIMATIONS ═══ */
+
+/* Shimmer sweep on cards */
+@keyframes shimmer{
+  0%{background-position:-200% center}
+  100%{background-position:200% center}
+}
+/* Gold glow pulse */
+@keyframes goldGlow{
+  0%,100%{box-shadow:0 0 8px rgba(61,214,224,.25),0 0 20px rgba(61,214,224,.1)}
+  50%{box-shadow:0 0 20px rgba(61,214,224,.5),0 0 40px rgba(61,214,224,.25),0 0 60px rgba(61,214,224,.1)}
+}
+/* Float up */
+@keyframes floatUp{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+/* Spark rotate */
+@keyframes sparkSpin{
+  from{transform:rotate(0deg) scale(1)}
+  to{transform:rotate(360deg) scale(1)}
+}
+/* Entrance slide */
+@keyframes slideInGold{
+  from{opacity:0;transform:translateY(20px) scale(.97)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+/* Token number flip */
+@keyframes tokenFlip{
+  0%{transform:rotateX(0deg)}
+  50%{transform:rotateX(90deg)}
+  100%{transform:rotateX(0deg)}
+}
+/* Ripple */
+@keyframes ripple{
+  0%{transform:scale(0);opacity:.6}
+  100%{transform:scale(4);opacity:0}
+}
+/* Gradient shift */
+@keyframes gradShift{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* ── Apply animations to elements ── */
+
+/* Cards lift + shimmer on hover */
+.card{position:relative;overflow:hidden}
+.card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 40%,rgba(61,214,224,.08) 50%,transparent 60%);
+  background-size:200% 100%;
+  opacity:0;transition:opacity .3s;pointer-events:none;z-index:0;
+}
+.card:hover::before{opacity:1;animation:shimmer 1.2s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(15,163,177,.18),0 0 0 1px rgba(61,214,224,.12)}
+
+/* Token number glow */
+.tc-num{
+  animation:goldGlow 3s ease-in-out infinite;
+  background:linear-gradient(135deg,#fff 0%,#7de8ef 40%,#3dd6e0 70%,#7de8ef 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;background-size:200% auto;
+  animation:goldGlow 3s ease-in-out infinite,gradShift 4s linear infinite;
+}
+
+/* Call Next button — pulse ring */
+.call-btn{position:relative;overflow:hidden}
+.call-btn::after{
+  content:'';position:absolute;inset:0;border-radius:var(--Rs);
+  background:rgba(255,255,255,.15);transform:scale(0);
+  transition:transform .5s ease,opacity .5s ease;opacity:0;
+}
+.call-btn:hover::after{transform:scale(1);opacity:1}
+.call-btn:hover{animation:goldGlow .5s ease}
+
+/* Nav tabs — gold underline slide */
+.nav-tab{position:relative}
+.nav-tab::after{
+  content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;
+  background:var(--e6);border-radius:2px;
+  transition:width .3s ease,left .3s ease;
+}
+.nav-tab:hover::after{width:80%;left:10%}
+.nav-tab.active::after{width:80%;left:10%}
+
+/* Queue items — gold left border on hover */
+.qi{border-left:3px solid transparent;transition:all .25s,border-left-color .25s}
+.qi:hover{border-left-color:var(--e5);padding-left:16px}
+
+/* Buttons shimmer */
+.btn-em{
+  background-size:200% auto;
+  background-image:linear-gradient(135deg,var(--e3) 0%,var(--e5) 50%,var(--e4) 100%);
+  transition:all .3s;
+}
+.btn-em:hover{background-position:right center;box-shadow:0 8px 24px rgba(15,163,177,.45)}
+.btn-coral{
+  background-size:200% auto;
+  background-image:linear-gradient(135deg,var(--gold) 0%,var(--e6) 50%,var(--e5) 100%);
+}
+.btn-gold:hover{background-position:right center}
+
+/* Stat cards float animation */
+.doc-stat,.m-stat{transition:all .3s}
+.doc-stat:hover{background:rgba(61,214,224,.15);transform:translateY(-3px)}
+
+/* Login role cards gold glow on select */
+.rc.sel,.rc:hover{box-shadow:0 0 0 2px var(--e5),0 6px 24px rgba(15,163,177,.25)}
+
+/* Patient queue token badge pulse */
+.qi-tok{
+  position:relative;overflow:visible;
+}
+.qi-tok::after{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  border:2px solid rgba(61,214,224,.0);
+  transition:border-color .3s;
+}
+.qi:hover .qi-tok::after{border-color:rgba(61,214,224,.4);animation:goldGlow .8s ease}
+
+/* View entrance animation */
+.view.active{animation:slideInGold .4s cubic-bezier(.22,1,.36,1)}
+
+/* Login card entrance */
+.login-card{animation:slideInGold .7s cubic-bezier(.22,1,.36,1) .1s both}
+
+/* Hero title shimmer text */
+.hero-main{
+  background:linear-gradient(90deg,#fff 0%,#7de8ef 30%,#3dd6e0 50%,#7de8ef 70%,#fff 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;background-size:200% auto;
+  animation:gradShift 4s linear infinite;
+}
+/* Hero cross icon pulse */
+.hero-cross{animation:goldGlow 2.5s ease-in-out infinite,floatUp 4s ease-in-out infinite}
+.hero-icon{animation:goldGlow 2.5s ease-in-out infinite}
+
+/* Hall token number gold glow (override for hall) */
+.hall-num{
+  animation:glowPulse 2.5s ease-in-out infinite,gradShift 4s linear infinite;
+  background:linear-gradient(90deg,#7de8ef 0%,#3dd6e0 40%,#ffdd88 70%,#3dd6e0 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;background-size:200% auto;
+  text-shadow:none;
+}
+
+/* Medical room cards */
+.rx-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(15,163,177,.18),0 0 0 1px rgba(61,214,224,.15)}
+
+/* WhatsApp button stays green */
+.ma-btn.whatsapp{border-color:rgba(37,211,102,.35);color:#128c7e;background:rgba(37,211,102,.04)}
+.ma-btn.whatsapp:hover{background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;border-color:#25d366}
+
+/* Particle dots on login bg */
+.login-mesh .mesh-circle{animation:meshFloat 8s ease-in-out infinite}
+.mc1{background:radial-gradient(circle,rgba(61,214,224,.18),transparent 70%)}
+.mc2{background:radial-gradient(circle,rgba(232,93,74,.15),transparent 70%)}
+.mc3{background:radial-gradient(circle,rgba(125,232,239,.1),transparent 70%)}
+
+/* Gold cursor highlight on interactive */
+button:active,.btn:active,.tc-btn:active,.nav-tab:active{
+  transform:scale(.97) !important;
+}
+
+/* Token badge in navbar pulse */
+.tok-display{animation:goldGlow 2.5s ease-in-out infinite}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:22px;right:22px;z-index:9998;
+  background:var(--e2);color:#fff;border-radius:var(--Rs);
+  padding:12px 18px;box-shadow:var(--shadow3);
+  display:flex;align-items:center;gap:8px;font-size:.88rem;font-weight:500;
+  transform:translateY(80px);opacity:0;
+  transition:all .35s cubic-bezier(.34,1.56,.64,1);pointer-events:none;
+}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* EMERGENCY ALERT */
+.em-alert{
+  position:fixed;top:80px;right:18px;z-index:9999;
+  background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;
+  border-radius:var(--R);padding:16px 20px;box-shadow:0 10px 32px rgba(192,57,43,.5);
+  display:none;max-width:290px;font-size:.85rem;
+  border-left:4px solid var(--gold);
+}
+.em-alert.show{display:block;animation:slideR .4s ease}
+@keyframes slideR{from{transform:translateX(110%);opacity:0}to{transform:translateX(0);opacity:1}}
+
+/* VIEWS */
+.view{display:none;animation:fadeUp .38s ease both}
+.view.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+
+/* ═══════════════════════════════════════
+   LOGIN PAGE
+═══════════════════════════════════════ */
+#login-page{
+  min-height:100vh;display:flex;flex-direction:column;
+  background:var(--e1);position:relative;overflow:hidden;
+}
+/* Animated mesh background */
+.login-mesh{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
+}
+.mesh-circle{
+  position:absolute;border-radius:50%;
+  background:radial-gradient(circle,rgba(61,214,224,.15) 0%,transparent 70%);
+  animation:meshFloat 8s ease-in-out infinite;
+}
+.mc1{width:600px;height:600px;top:-200px;left:-200px;animation-delay:0s}
+.mc2{width:400px;height:400px;top:50%;right:-100px;animation-delay:2s}
+.mc3{width:300px;height:300px;bottom:-100px;left:30%;animation-delay:4s}
+@keyframes meshFloat{0%,100%{transform:scale(1) translate(0,0)}50%{transform:scale(1.1) translate(20px,20px)}}
+
+/* Grid lines background */
+.login-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(61,214,224,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(61,214,224,.04) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+
+/* Hero title banner */
+.login-hero{
+  text-align:center;padding:60px 32px 40px;position:relative;z-index:10;
+  animation:heroIn 1s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes heroIn{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
+.hero-cross{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:72px;height:72px;border-radius:50%;
+  background:linear-gradient(135deg,var(--e4),var(--e5));
+  font-size:2rem;color:#fff;margin:0 auto 20px;
+  box-shadow:0 8px 30px rgba(15,163,177,.4),0 0 60px rgba(61,214,224,.2);
+  animation:crossPulse 3s ease-in-out infinite;
+}
+@keyframes crossPulse{0%,100%{box-shadow:0 8px 30px rgba(15,163,177,.4),0 0 60px rgba(61,214,224,.2)}50%{box-shadow:0 8px 40px rgba(15,163,177,.6),0 0 100px rgba(61,214,224,.35)}}
+.hero-main{
+  font-family:'Cormorant Garamond',serif;font-weight:700;
+  font-size:clamp(2.4rem,6vw,4.2rem);color:#fff;
+  line-height:1.05;letter-spacing:-.03em;
+}
+.hero-main .cross-accent{color:var(--e5)}
+.hero-te{
+  font-family:'Noto Sans Telugu',sans-serif;font-size:clamp(1.1rem,3vw,1.6rem);
+  color:rgba(255,255,255,.7);margin-top:8px;font-weight:400;
+  letter-spacing:.05em;
+}
+.hero-sub{
+  color:rgba(255,255,255,.45);font-size:.9rem;margin-top:10px;
+  letter-spacing:.06em;text-transform:uppercase;font-weight:300;
+}
+.hero-divider{
+  width:80px;height:2px;margin:16px auto;
+  background:linear-gradient(to right,transparent,var(--e5),transparent);
+}
+
+/* Login card */
+.login-card-wrap{
+  flex:1;display:flex;align-items:flex-start;justify-content:center;
+  padding:0 24px 48px;position:relative;z-index:10;
+}
+.login-card{
+  background:rgba(255,255,255,.97);border-radius:24px;
+  width:100%;max-width:520px;padding:40px 44px;
+  box-shadow:0 40px 80px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.1);
+  animation:cardIn .7s cubic-bezier(.34,1.26,.64,1) .2s both;
+  backdrop-filter:blur(20px);
+}
+@keyframes cardIn{from{opacity:0;transform:translateY(30px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.lc-heading{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--e1);margin-bottom:4px;letter-spacing:-.02em}
+.lc-sub{font-size:.84rem;color:var(--muted);margin-bottom:22px}
+
+.role-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px}
+.rc{
+  border:1.5px solid var(--border);border-radius:var(--Rs);padding:12px 8px;
+  cursor:pointer;transition:all var(--transition);text-align:center;background:var(--cream);
+  position:relative;overflow:hidden;
+}
+.rc::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--e4),var(--e5));opacity:0;transition:opacity var(--transition)}
+.rc:hover,.rc.sel{border-color:var(--e5);transform:translateY(-2px);box-shadow:0 6px 18px rgba(15,163,177,.2)}
+.rc.sel::before{opacity:1}
+.rc .ri{font-size:1.5rem;margin-bottom:5px;position:relative;z-index:1}
+.rc .rn{font-weight:700;font-size:.78rem;color:var(--text);position:relative;z-index:1;transition:color var(--transition)}
+.rc.sel .rn{color:#fff}
+.rc .rs{font-size:.64rem;color:var(--muted);margin-top:1px;position:relative;z-index:1;transition:color var(--transition)}
+.rc.sel .rs{color:rgba(255,255,255,.75)}
+
+.lf{display:flex;flex-direction:column;gap:5px;margin-bottom:13px}
+.lf label{font-size:.68rem;font-weight:600;color:var(--slate3);text-transform:uppercase;letter-spacing:.8px}
+.lf input{border:1.5px solid var(--border);border-radius:var(--Rs);padding:11px 14px;font-size:.9rem;background:var(--cream);outline:none;transition:all var(--transition)}
+.lf input:focus{border-color:var(--e5);background:#fff;box-shadow:0 0 0 3px rgba(15,163,177,.1)}
+
+.l-err{background:#fff0ee;border:1.5px solid #f5c6c0;border-radius:8px;padding:9px 13px;font-size:.82rem;color:var(--red);display:none;margin-bottom:10px;animation:shake .4s ease}
+.l-err.show{display:flex;align-items:center;gap:7px}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+
+.btn-login{
+  width:100%;padding:13px;border:none;border-radius:var(--Rs);
+  background:linear-gradient(135deg,var(--e3),var(--e5),var(--e6));color:#fff;
+  font-size:.95rem;font-weight:600;cursor:pointer;transition:all var(--transition);
+  box-shadow:0 6px 20px rgba(5,46,64,.35);letter-spacing:.02em;
+  position:relative;overflow:hidden;
+}
+.btn-login::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 0%,rgba(255,255,255,.1) 50%,transparent 100%);transform:translateX(-100%);transition:transform .5s ease}
+.btn-login:hover::after{transform:translateX(100%)}
+.btn-login:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(5,46,64,.45)}
+.l-demo{font-size:.7rem;color:var(--slate4);margin-top:10px;text-align:center}
+
+
+/* ═══════════════════════════════════════
+   MAIN APP
+═══════════════════════════════════════ */
+#app{display:none}
+
+/* PAGE HERO */
+.page-hero{
+  background:linear-gradient(135deg,#021f2b 0%,#021f2b 35%,#074060 80%,#0a6080 100%);
+  padding:18px 36px;position:relative;overflow:hidden;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.page-hero::before{
+  content:'';position:absolute;top:-80px;right:-80px;
+  width:320px;height:320px;
+  background:radial-gradient(circle,rgba(61,214,224,.12),transparent 70%);
+  border-radius:50%;
+}
+.page-hero::after{
+  content:'';position:absolute;bottom:-60px;left:20%;
+  width:200px;height:200px;
+  background:radial-gradient(circle,rgba(232,93,74,.08),transparent 70%);
+  border-radius:50%;
+}
+.hero-title-row{
+  display:flex;align-items:center;justify-content:space-between;
+  position:relative;z-index:2;
+}
+.hero-brand{display:flex;align-items:center;gap:16px}
+.hero-icon{
+  width:56px;height:56px;background:linear-gradient(135deg,var(--e5),var(--e6));
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;box-shadow:0 4px 18px rgba(15,163,177,.4);
+  border:2px solid rgba(255,255,255,.2);flex-shrink:0;
+}
+.hero-names .en{
+  font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:700;
+  color:#fff;line-height:1.1;letter-spacing:-.02em;
+}
+.hero-names .te{font-family:'Noto Sans Telugu',sans-serif;font-size:.9rem;color:rgba(255,255,255,.65);margin-top:2px}
+.hero-right{display:flex;align-items:center;gap:12px}
+.role-pill{
+  background:rgba(61,214,224,.15);border:1px solid rgba(61,214,224,.4);
+  color:var(--e5);border-radius:30px;padding:5px 14px;font-size:.74rem;font-weight:600;
+  letter-spacing:.04em;
+}
+.tok-display{
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);
+  border-radius:30px;padding:7px 16px;
+  display:flex;align-items:center;gap:8px;color:#fff;font-size:.85rem;font-weight:600;
+  backdrop-filter:blur(8px);
+}
+.tok-dot{width:8px;height:8px;background:var(--e6);border-radius:50%;animation:pd 1.5s infinite}
+@keyframes pd{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
+.logout-btn{
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.85);border-radius:30px;padding:7px 14px;
+  cursor:pointer;font-size:.76rem;font-weight:500;transition:all var(--transition);
+  font-family:'Outfit',sans-serif;
+}
+.logout-btn:hover{background:rgba(255,255,255,.2);color:#fff}
+
+/* NAV TABS (below hero) */
+.nav-strip{
+  background:rgba(2,31,43,.98);border-bottom:1px solid rgba(255,255,255,.08);
+  padding:0 36px;display:flex;gap:2px;
+  position:sticky;top:0;z-index:99;
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+  backdrop-filter:blur(12px);
+}
+.nav-tab{
+  background:transparent;border:none;color:rgba(255,255,255,.55);
+  padding:14px 18px;cursor:pointer;font-family:'Outfit',sans-serif;
+  font-size:.82rem;font-weight:500;transition:all var(--transition);
+  display:flex;align-items:center;gap:6px;border-bottom:2px solid transparent;
+  white-space:nowrap;
+}
+.nav-tab:hover{color:rgba(255,255,255,.9)}
+.nav-tab.active{color:#fff;border-bottom-color:var(--e5);font-weight:600}
+
+
+/* ═══════════════════════════════════════
+   RECEPTION
+═══════════════════════════════════════ */
+.r-wrap{display:grid;grid-template-columns:1fr 360px;gap:20px;padding:24px 32px;max-width:1400px;margin:0 auto}
+
+/* Token card — premium */
+.tok-card{
+  border-radius:20px;padding:28px;color:#fff;margin-bottom:18px;
+  background:linear-gradient(145deg,#021f2b 0%,#021f2b 40%,#074060 100%);
+  box-shadow:0 12px 40px rgba(2,31,43,.4),inset 0 1px 0 rgba(255,255,255,.08);
+  position:relative;overflow:hidden;
+}
+.tok-card::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(61,214,224,.15),transparent 70%);border-radius:50%}
+.tok-card::after{content:'';position:absolute;bottom:-40px;left:-30px;width:160px;height:160px;background:radial-gradient(circle,rgba(232,93,74,.08),transparent 70%);border-radius:50%}
+.tc-label{font-size:.66rem;opacity:.65;text-transform:uppercase;letter-spacing:2px;margin-bottom:3px}
+.tc-num{
+  font-family:'Cormorant Garamond',serif;font-size:6rem;font-weight:700;
+  line-height:.95;letter-spacing:-.04em;position:relative;z-index:1;
+  text-shadow:0 4px 20px rgba(0,0,0,.2);
+}
+.tc-sub{font-size:.88rem;margin-top:8px;opacity:.75;font-weight:300}
+.tc-acts{display:flex;gap:8px;justify-content:center;margin-top:16px;position:relative;z-index:1}
+.tc-btn{
+  padding:9px 20px;border-radius:30px;font-family:'Outfit',sans-serif;
+  border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);
+  color:#fff;cursor:pointer;font-weight:600;font-size:.82rem;
+  transition:all var(--transition);backdrop-filter:blur(4px);
+}
+.tc-btn:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.5);transform:translateY(-2px)}
+.tc-btn.gold-btn{background:rgba(232,93,74,.2);border-color:rgba(232,93,74,.4);color:var(--e5)}
+.tc-btn.gold-btn:hover{background:rgba(232,93,74,.35)}
+
+/* Queue */
+.ql{display:flex;flex-direction:column;gap:8px}
+.qi{
+  display:flex;align-items:center;gap:12px;padding:11px 14px;
+  border-radius:var(--Rs);border:1px solid var(--border);background:var(--cream);
+  transition:all var(--transition);cursor:pointer;
+}
+.qi:hover{border-color:var(--e5);background:#fff;transform:translateX(5px);box-shadow:0 3px 14px rgba(15,163,177,.12)}
+.qi-tok{
+  width:38px;height:38px;border-radius:10px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--e4),var(--e5));
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:.88rem;font-family:'Cormorant Garamond',serif;
+  box-shadow:0 3px 10px rgba(10,96,128,.25);
+}
+.qi-tok.em{background:linear-gradient(135deg,var(--red),var(--red2))}
+.qi-info{flex:1}.qi-name{font-weight:600;font-size:.87rem}.qi-meta{font-size:.72rem;color:var(--muted);margin-top:1px}
+.qb{font-size:.65rem;padding:3px 9px;border-radius:20px;font-weight:600}
+.qb.waiting{background:rgba(230,126,34,.1);color:var(--amber)}
+.qb.done{background:rgba(15,163,177,.12);color:var(--e3)}
+.qb.emergency{background:rgba(192,57,43,.1);color:var(--red)}
+
+
+/* ═══════════════════════════════════════
+   DOCTOR ROOM
+═══════════════════════════════════════ */
+.doc-page{
+  min-height:calc(100vh - 120px);
+  background:#f0f8fa;padding:24px 32px;
+  max-width:100%;overflow-x:hidden;
+}
+.doc-grid{display:grid;grid-template-columns:290px 1fr;gap:18px;max-width:100%}
+.doc-hero{
+  background:linear-gradient(135deg,#021f2b,#021f2b);
+  border-radius:20px;padding:24px 28px;color:#fff;
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:22px;box-shadow:var(--shadow2);
+  position:relative;overflow:hidden;max-width:100%;
+}
+.doc-hero::after{content:'';position:absolute;right:-60px;top:-60px;width:240px;height:240px;background:radial-gradient(circle,rgba(61,214,224,.1),transparent 70%);border-radius:50%}
+.dh-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;margin-bottom:3px;letter-spacing:-.01em}
+.dh-sub{font-size:.8rem;opacity:.65;font-family:'Noto Sans Telugu',sans-serif}
+.doc-stat-row{display:flex;gap:10px}
+.doc-stat{
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;padding:10px 16px;text-align:center;min-width:80px;
+  transition:background var(--transition);
+}
+.doc-stat:hover{background:rgba(61,214,224,.15)}
+.ds-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;line-height:1}
+.ds-lbl{font-size:.62rem;opacity:.65;text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+
+/* Call next panel */
+.call-panel{
+  background:linear-gradient(145deg,#021f2b,#021f2b);
+  border-radius:16px;padding:22px;color:#fff;margin-bottom:14px;
+  box-shadow:0 8px 28px rgba(2,31,43,.35);
+  position:relative;overflow:hidden;
+}
+.call-panel::after{content:'';position:absolute;bottom:-40px;right:-30px;width:150px;height:150px;background:radial-gradient(circle,rgba(61,214,224,.12),transparent 70%);border-radius:50%}
+.cp-label{font-size:.64rem;text-transform:uppercase;letter-spacing:2px;opacity:.6;margin-bottom:2px}
+.cp-num{font-family:'Cormorant Garamond',serif;font-size:4.5rem;font-weight:700;line-height:.95;text-shadow:0 4px 16px rgba(0,0,0,.2);position:relative;z-index:1}
+.cp-info{font-size:.82rem;opacity:.65;margin-top:5px}
+.call-btn{
+  width:100%;margin-top:14px;padding:14px;border:none;border-radius:var(--Rs);min-height:48px;
+  background:linear-gradient(135deg,var(--gold),var(--e5));
+  color:var(--e1);font-weight:700;font-size:.9rem;cursor:pointer;
+  transition:all var(--transition);
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  box-shadow:0 4px 16px rgba(232,93,74,.35);
+  position:relative;z-index:1;font-family:'Outfit',sans-serif;
+}
+.call-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,93,74,.5)}
+.call-btn.ring{animation:ringAnim .25s ease 4}
+@keyframes ringAnim{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+/* Patient detail card */
+.pat-card{
+  background:#fff;border-radius:20px;
+  border:1px solid var(--border);padding:22px;
+  animation:slideIn .3s ease both;
+  box-shadow:var(--shadow);
+}
+@keyframes slideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.pa-avatar{
+  width:56px;height:56px;border-radius:14px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--e3),var(--e5));
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;font-weight:700;font-family:'Cormorant Garamond',serif;
+  box-shadow:0 4px 14px rgba(5,46,64,.3);
+}
+.pa-header{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.pa-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--e1)}
+.pa-meta{font-size:.78rem;color:var(--muted);margin-top:2px}
+.stags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.stag{background:rgba(15,163,177,.12);color:var(--e4);border-radius:20px;padding:3px 10px;font-size:.72rem;font-weight:600}
+.stag.danger{background:rgba(192,57,43,.1);color:var(--red)}
+.med-row-rx{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--cream);border-radius:8px;margin-bottom:6px;font-size:.84rem;border-left:3px solid var(--e5)}
+/* Prescription quick-type buttons */
+.rx-type-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.rx-type-btn{
+  padding:6px 13px;border-radius:20px;border:1.5px solid var(--border);
+  background:#fff;cursor:pointer;font-size:.76rem;font-weight:600;
+  font-family:'Outfit',sans-serif;transition:all var(--transition);
+  display:flex;align-items:center;gap:5px;
+}
+.rx-type-btn:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.1)}
+.rx-type-btn.med{border-color:rgba(10,96,128,.3);color:var(--e4)}
+.rx-type-btn.med:hover,.rx-type-btn.med.active{background:var(--e4);color:#fff;border-color:var(--e4)}
+.rx-type-btn.inj{border-color:rgba(230,126,34,.35);color:var(--amber)}
+.rx-type-btn.inj:hover,.rx-type-btn.inj.active{background:var(--amber);color:#fff;border-color:var(--amber)}
+.rx-type-btn.blood{border-color:rgba(192,57,43,.35);color:var(--red)}
+.rx-type-btn.blood:hover,.rx-type-btn.blood.active{background:var(--red);color:#fff;border-color:var(--red)}
+.rx-type-btn.xray{border-color:rgba(52,152,219,.35);color:#1a6fa8}
+.rx-type-btn.xray:hover,.rx-type-btn.xray.active{background:#1a6fa8;color:#fff;border-color:#1a6fa8}
+/* Rx input row — stacked on mobile */
+.rx-input-row{display:flex;gap:7px;margin-top:8px;align-items:flex-end;flex-wrap:wrap}
+.rx-input-row .rx-main{flex:1;min-width:140px}
+.rx-input-row .rx-dose{width:90px;min-width:80px}
+.rx-input-row .rx-days{width:76px;min-width:70px}
+@media(max-width:600px){
+  .rx-input-row{flex-direction:column}
+  .rx-input-row input{width:100% !important}
+}
+.rx-sent{
+  display:inline-flex;align-items:center;gap:7px;
+  background:linear-gradient(135deg,var(--e4),var(--e5));color:#fff;
+  border-radius:30px;padding:7px 15px;font-size:.78rem;font-weight:600;
+  margin-top:10px;box-shadow:0 3px 12px rgba(10,96,128,.3);
+  animation:popIn .4s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes popIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+
+
+/* ═══════════════════════════════════════
+   AI BOT
+═══════════════════════════════════════ */
+.ai-outer{padding:22px 32px 28px;max-width:1200px;margin:0 auto}
+.ai-layout{display:grid;grid-template-columns:270px 1fr;gap:22px}
+
+/* Robot sidebar */
+.robot-sidebar{
+  background:linear-gradient(160deg,#eaf6ff,#edf8f3);
+  border-radius:20px;border:1px solid var(--border);
+  box-shadow:var(--shadow);padding:24px;
+  display:flex;flex-direction:column;align-items:center;gap:13px;
+}
+.robot-globe{
+  width:120px;height:120px;border-radius:50%;
+  background:linear-gradient(135deg,#c8e8ed,#d0edf1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:4.5rem;position:relative;
+  box-shadow:0 8px 28px rgba(10,96,128,.15),0 0 0 8px rgba(10,96,128,.06);
+  border:3px solid rgba(255,255,255,.8);
+  transition:transform .3s ease;
+}
+.robot-globe.spk{animation:rSpk .35s ease-in-out infinite alternate}
+@keyframes rSpk{from{transform:scale(1)}to{transform:scale(1.06)}}
+.r-online{
+  position:absolute;bottom:7px;right:7px;width:17px;height:17px;
+  background:var(--e5);border-radius:50%;border:2.5px solid #fff;
+  animation:pd 1.5s infinite;
+}
+.r-online.spk-dot{background:var(--e6);box-shadow:0 0 8px rgba(61,214,224,.6)}
+
+.vwave{display:flex;align-items:center;justify-content:center;gap:3px;height:26px}
+.vwave span{display:inline-block;width:3.5px;border-radius:3px;background:linear-gradient(to top,var(--e4),var(--e6));animation:vwa 1s ease-in-out infinite}
+.vwave span:nth-child(1){animation-delay:0s}.vwave span:nth-child(2){animation-delay:.12s}.vwave span:nth-child(3){animation-delay:.22s}.vwave span:nth-child(4){animation-delay:.32s}.vwave span:nth-child(5){animation-delay:.42s}.vwave span:nth-child(6){animation-delay:.22s}.vwave span:nth-child(7){animation-delay:.12s}
+@keyframes vwa{0%,100%{height:3px}50%{height:22px}}
+.vwave.idle span{animation:none;height:3px;opacity:.3}
+
+.r-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:var(--e1);text-align:center}
+.r-sub{font-size:.74rem;color:var(--muted);text-align:center;line-height:1.5}
+.lsw{display:flex;gap:7px}
+.lb{
+  padding:5px 14px;border-radius:20px;border:1.5px solid var(--border);
+  background:#fff;cursor:pointer;font-size:.75rem;font-weight:600;
+  transition:all var(--transition);font-family:'Noto Sans Telugu',sans-serif;
+}
+.lb.active{background:var(--e4);color:#fff;border-color:var(--e4)}
+.lb:hover:not(.active){border-color:var(--e5);color:var(--e4)}
+
+.qt-list{width:100%;display:flex;flex-direction:column;gap:6px}
+.qt-i{
+  display:flex;align-items:center;gap:8px;padding:8px 11px;
+  border-radius:var(--Rs);background:#fff;border:1px solid var(--border);
+  font-size:.78rem;font-weight:500;cursor:pointer;transition:all var(--transition);
+  font-family:'Noto Sans Telugu',sans-serif;
+}
+.qt-i:hover{border-color:var(--e5);color:var(--e4);background:rgba(15,163,177,.05);transform:translateX(3px)}
+.qt-i.danger{border-color:rgba(192,57,43,.2);color:var(--red)}
+.qt-i.danger:hover{background:rgba(192,57,43,.05)}
+
+/* Chat window */
+.chat-window{
+  display:flex;flex-direction:column;height:590px;
+  background:#fff;border-radius:20px;border:1px solid var(--border);
+  overflow:hidden;box-shadow:var(--shadow2);
+}
+.chat-top{
+  background:linear-gradient(90deg,#021f2b,#074060);
+  padding:14px 18px;display:flex;align-items:center;gap:12px;
+  position:relative;overflow:hidden;
+}
+.chat-top::after{content:'';position:absolute;right:-30px;top:-30px;width:120px;height:120px;background:radial-gradient(circle,rgba(61,214,224,.1),transparent 70%);border-radius:50%}
+.chat-top-name{font-weight:700;font-size:.95rem;color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.1rem;letter-spacing:-.01em}
+.chat-top-sub{font-size:.72rem;color:rgba(255,255,255,.7);font-family:'Noto Sans Telugu',sans-serif}
+.spk-badge{margin-left:auto;background:rgba(255,255,255,.15);border-radius:20px;padding:4px 11px;color:#fff;font-size:.68rem;font-weight:600;display:none;align-items:center;gap:4px;border:1px solid rgba(255,255,255,.2)}
+.spk-badge.on{display:flex}
+
+.chat-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;background:linear-gradient(to bottom,#f4fafb,#e8f6f8)}
+.msg{display:flex;gap:8px;max-width:88%;animation:msgPop .32s cubic-bezier(.34,1.46,.64,1)}
+@keyframes msgPop{from{opacity:0;transform:translateY(10px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+.msg.u{align-self:flex-end;flex-direction:row-reverse}
+.mav{width:30px;height:30px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1rem;background:linear-gradient(135deg,var(--e3),var(--e5))}
+.msg.u .mav{background:linear-gradient(135deg,var(--e4),var(--e6))}
+.mb{
+  padding:10px 14px;border-radius:14px;font-size:.85rem;line-height:1.65;
+  background:#fff;border:1px solid var(--border);color:var(--text);
+  font-family:'Noto Sans Telugu',sans-serif;
+  box-shadow:0 1px 6px rgba(0,0,0,.04);
+}
+.msg.u .mb{background:linear-gradient(135deg,var(--e3),var(--e5));color:#fff;border-color:transparent;box-shadow:0 3px 12px rgba(5,46,64,.25)}
+
+.chat-foot{padding:12px 14px;border-top:1px solid var(--border);background:#fff}
+.ci-row{display:flex;gap:8px;align-items:center}
+.ci-row input{flex:1;border-radius:30px;padding:10px 16px;font-family:'Noto Sans Telugu',sans-serif;font-size:.85rem;background:var(--cream)}
+.mic-btn{width:40px;height:40px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;font-size:.95rem;cursor:pointer;transition:all var(--transition);flex-shrink:0;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(192,57,43,.3)}
+.mic-btn:hover{transform:scale(1.08)}
+.mic-btn.on{animation:mr 1s infinite}
+@keyframes mr{0%,100%{box-shadow:0 0 0 0 rgba(192,57,43,.5)}70%{box-shadow:0 0 0 12px rgba(192,57,43,0)}}
+.send-btn{width:40px;height:40px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--e4),var(--e5));color:#fff;font-size:.95rem;cursor:pointer;transition:all var(--transition);flex-shrink:0;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(10,96,128,.3)}
+.send-btn:hover{transform:scale(1.08)}
+.vsbar{display:flex;align-items:center;gap:6px;padding:5px 10px;font-size:.7rem;color:var(--muted);margin-top:4px}
+.vsbar.spking{color:var(--e4);font-weight:600}
+.typing{display:flex;gap:4px;padding:3px 0}
+.typing span{width:6px;height:6px;background:var(--slate4);border-radius:50%;animation:tb 1.1s infinite}
+.typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+@keyframes tb{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+
+
+/* ═══════════════════════════════════════
+   MEDICAL ROOM
+═══════════════════════════════════════ */
+.med-wrap{padding:22px 32px 28px;max-width:1400px;margin:0 auto}
+.med-hero{
+  background:linear-gradient(135deg,#021f2b,#052e40,#074060);
+  border-radius:20px;padding:22px 28px;color:#fff;
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:20px;box-shadow:0 8px 28px rgba(0,0,0,.25);
+  position:relative;overflow:hidden;
+}
+.med-hero::before{content:'✚';position:absolute;right:30px;top:50%;transform:translateY(-50%);font-size:8rem;opacity:.04;font-family:'Cormorant Garamond',serif}
+.med-hero-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;letter-spacing:-.01em;margin-bottom:4px}
+.med-hero-sub{font-size:.8rem;opacity:.6;font-family:'Noto Sans Telugu',sans-serif}
+.med-stats{display:flex;gap:10px}
+.m-stat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:10px 16px;text-align:center;min-width:75px}
+.ms-num{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;line-height:1}
+.ms-lbl{font-size:.6rem;opacity:.6;text-transform:uppercase;letter-spacing:.5px}
+
+.med-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:16px}
+.rx-card{
+  background:#fff;border-radius:16px;border:1px solid var(--border);
+  overflow:hidden;box-shadow:var(--shadow);
+  transition:all var(--transition);
+}
+.rx-card:hover{box-shadow:var(--shadow2);transform:translateY(-3px)}
+.rx-card-top{
+  padding:14px 18px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  background:linear-gradient(90deg,var(--cream),#fff);
+}
+.rx-card-top.urg{background:linear-gradient(90deg,#fff5f5,#fff)}
+.rx-tok{
+  width:44px;height:44px;border-radius:12px;
+  background:linear-gradient(135deg,var(--e3),var(--e5));
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;
+  box-shadow:0 3px 10px rgba(5,46,64,.25);flex-shrink:0;
+}
+.rx-tok.urg{background:linear-gradient(135deg,var(--red),var(--red2))}
+.rx-pname{font-weight:700;font-size:.95rem;color:var(--e1);display:flex;align-items:center;gap:8px;font-family:'Cormorant Garamond',serif}
+.rx-pmeta{font-size:.73rem;color:var(--muted);margin-top:2px}
+.rx-body{padding:14px 18px}
+.m-row{
+  display:flex;align-items:center;gap:10px;padding:8px 12px;
+  background:var(--cream);border-radius:8px;margin-bottom:6px;
+  font-size:.83rem;border-left:3px solid var(--e5);
+}
+.m-row.urg{border-left-color:var(--red)}
+.m-row .mn{font-weight:600;flex:1;color:var(--e1)}
+.m-row .md{font-size:.75rem;color:var(--muted)}
+.stat-pill{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:.68rem;font-weight:600}
+.sp-pend{background:rgba(230,126,34,.1);color:var(--amber)}
+.sp-ready{background:rgba(15,163,177,.1);color:var(--e3)}
+.sp-given{background:rgba(15,163,177,.1);color:var(--e3)}
+.ma-btns{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap}
+.ma-btn{padding:6px 13px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;font-weight:600;font-size:.75rem;background:#fff;transition:all var(--transition);display:flex;align-items:center;gap:5px;font-family:'Outfit',sans-serif}
+.ma-btn.ready{border-color:rgba(15,163,177,.3);color:var(--e4)}
+.ma-btn.ready:hover{background:var(--e5);color:#fff;border-color:var(--e5)}
+.ma-btn.given{border-color:rgba(15,163,177,.3);color:var(--e3)}
+.ma-btn.given:hover{background:#0a6080;color:#fff;border-color:var(--e3)}
+.ma-btn.print{border-color:rgba(52,152,219,.3);color:#1a6fa8}
+.ma-btn.print:hover{background:#1a6fa8;color:#fff;border-color:#1a6fa8}
+.ma-btn.whatsapp{border-color:rgba(37,211,102,.35);color:#0a6080;background:rgba(37,211,102,.04)}
+.ma-btn.whatsapp:hover{background:linear-gradient(135deg,#0fa3b1,#0a6080);color:#fff;border-color:#0fa3b1;box-shadow:0 4px 14px rgba(37,211,102,.3)}
+.ma-btn.sms{border-color:rgba(52,152,219,.3);color:#1a6fa8;background:rgba(52,152,219,.04)}
+.ma-btn.sms:hover{background:linear-gradient(135deg,#3498db,#2980b9);color:#fff}
+.send-success-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.25);color:#0a6080;border-radius:20px;padding:4px 11px;font-size:.7rem;font-weight:600;animation:popIn2 .4s cubic-bezier(.34,1.56,.64,1)}
+@keyframes popIn2{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+.new-ring{
+  position:relative;
+}
+.new-ring::before{content:'NEW';position:absolute;top:-6px;right:-6px;background:var(--red2);color:#fff;font-size:.55rem;font-weight:800;border-radius:8px;padding:2px 5px;letter-spacing:.3px;z-index:2}
+
+
+/* ═══════════════════════════════════════
+   HALL DISPLAY
+═══════════════════════════════════════ */
+.hall-view{
+  min-height:calc(100vh - 120px);
+  background:radial-gradient(ellipse at top,#021f2b 0%,#010d14 50%,#010d14 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:40px;gap:28px;position:relative;overflow:hidden;
+}
+.hstars{position:absolute;inset:0;pointer-events:none}
+.hstars span{position:absolute;background:white;border-radius:50%;animation:tw 3s infinite}
+@keyframes tw{0%,100%{opacity:.15}50%{opacity:.75}}
+.h-logo{
+  font-family:'Cormorant Garamond',serif;color:#3dd6e0;
+  font-size:1.8rem;font-weight:700;text-align:center;z-index:1;letter-spacing:-.02em;
+}
+.h-logo span{font-family:'Noto Sans Telugu',sans-serif;font-size:.95rem;color:rgba(255,255,255,.6);display:block;margin-top:4px;font-weight:300}
+.hall-box{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(61,214,224,.3);border-radius:28px;
+  padding:48px 88px;text-align:center;
+  backdrop-filter:blur(24px);z-index:1;
+  box-shadow:0 0 80px rgba(61,214,224,.06),inset 0 1px 0 rgba(255,255,255,.05);
+}
+.hall-lbl{color:rgba(255,255,255,.5);font-size:.82rem;text-transform:uppercase;letter-spacing:3.5px;margin-bottom:8px}
+.hall-num{
+  font-family:'Cormorant Garamond',serif;font-size:9rem;font-weight:700;
+  color:#3dd6e0;line-height:.95;letter-spacing:-.04em;
+  text-shadow:0 0 80px rgba(61,214,224,.7);
+  animation:glowPulse 2.5s ease-in-out infinite;
+}
+@keyframes glowPulse{0%,100%{text-shadow:0 0 80px rgba(61,214,224,.6)}50%{text-shadow:0 0 140px rgba(61,214,224,.95),0 0 60px rgba(61,214,224,.5)}}
+.hall-nx{color:rgba(255,255,255,.85);font-size:1.3rem;margin-top:16px;font-weight:300}
+.hall-nx strong{color:#3dd6e0}
+.hall-status{
+  display:flex;gap:10px;align-items:center;
+  background:rgba(61,214,224,.08);border:1px solid rgba(61,214,224,.3);
+  border-radius:50px;padding:10px 24px;color:#fff;font-size:.9rem;z-index:1;
+}
+.hgdot{width:11px;height:11px;background:#3dd6e0;border-radius:50%;animation:pd 1.5s infinite;box-shadow:0 0 8px rgba(61,214,224,.6)}
+.hall-ticker{
+  position:fixed;bottom:0;left:0;right:0;
+  background:rgba(61,214,224,.06);border-top:1px solid rgba(61,214,224,.12);
+  padding:10px 0;overflow:hidden;z-index:10;
+}
+.ticker-in{white-space:nowrap;display:inline-block;color:#3dd6e0;font-size:.84rem;animation:tickMove 32s linear infinite;font-family:'Noto Sans Telugu',sans-serif}
+@keyframes tickMove{0%{transform:translateX(100vw)}100%{transform:translateX(-100%)}}
+.hall-time{color:rgba(255,255,255,.45);font-size:.9rem;z-index:1;font-family:'Cormorant Garamond',serif;font-size:1.1rem}
+
+
+/* ═══════════════════════════════════════
+   FOOTER — Premium Reimagined
+═══════════════════════════════════════ */
+#hfoot{
+  margin-top:48px;overflow:hidden;position:relative;
+  background:linear-gradient(160deg,#061a10 0%,#021f2b 40%,#0c2818 100%);
+}
+/* Animated background particles */
+#hfoot::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 70% 50% at 20% 40%,rgba(61,214,224,.07),transparent),
+             radial-gradient(ellipse 50% 60% at 80% 60%,rgba(232,93,74,.05),transparent);
+}
+.f-top-band{
+  position:relative;overflow:hidden;height:320px;
+}
+.f-top-band img{
+  width:100%;height:100%;object-fit:cover;
+  filter:brightness(.45) saturate(1.1);
+  transition:transform 8s ease;
+}
+#hfoot:hover .f-top-band img{transform:scale(1.04)}
+.f-top-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(16,8,0,.2) 0%,rgba(16,8,0,.6) 50%,rgba(16,8,0,.98) 100%);
+  display:flex;align-items:flex-end;
+  padding:0 48px 36px;
+}
+.f-clinic-hero{display:flex;align-items:flex-end;gap:20px}
+.f-cross-icon{
+  width:64px;height:64px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--e4),var(--e6));
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;
+  box-shadow:0 0 30px rgba(61,214,224,.4),0 0 60px rgba(61,214,224,.15);
+  border:2px solid rgba(61,214,224,.3);
+  margin-bottom:4px;
+}
+.f-clinic-names .f-en{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.6rem;font-weight:700;color:#fff;
+  line-height:1;letter-spacing:-.03em;
+  text-shadow:0 2px 20px rgba(0,0,0,.5);
+}
+.f-clinic-names .f-te{
+  font-family:'Noto Sans Telugu',sans-serif;
+  font-size:1rem;color:#3dd6e0;margin-top:4px;
+  letter-spacing:.04em;opacity:.9;
+}
+.f-clinic-names .f-sub{
+  font-size:.78rem;color:rgba(255,255,255,.45);margin-top:4px;
+  letter-spacing:.06em;text-transform:uppercase;
+}
+
+/* Info grid */
+.f-info-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0;padding:0 48px;
+  position:relative;z-index:2;
+}
+.f-info-col{
+  padding:36px 28px;
+  border-right:1px solid rgba(255,255,255,.06);
+  position:relative;
+  transition:background var(--transition);
+}
+.f-info-col:last-child{border-right:none}
+.f-info-col:hover{background:rgba(255,255,255,.025)}
+.f-col-icon{
+  width:36px;height:36px;border-radius:10px;
+  background:rgba(61,214,224,.1);border:1px solid rgba(61,214,224,.35);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.95rem;margin-bottom:14px;
+}
+.f-col-title{
+  font-size:.62rem;font-weight:700;color:#3dd6e0;
+  text-transform:uppercase;letter-spacing:1.8px;margin-bottom:12px;
+}
+.f-col-body{display:flex;flex-direction:column;gap:6px}
+.f-col-body p{color:rgba(255,255,255,.55);font-size:.83rem;line-height:1.7}
+.f-col-body a{
+  color:rgba(255,255,255,.55);font-size:.83rem;line-height:1.7;
+  text-decoration:none;transition:color var(--transition);display:flex;align-items:center;gap:5px;
+}
+.f-col-body a:hover{color:var(--e5)}
+.f-phone-link{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem!important;font-weight:700;color:#fff!important;
+  letter-spacing:-.01em;margin-bottom:4px;
+  text-shadow:0 0 20px rgba(61,214,224,.3);
+}
+.f-phone-link:hover{color:var(--e5)!important;text-shadow:0 0 30px rgba(61,214,224,.5)!important}
+.f-maps-btn{
+  display:inline-flex;align-items:center;gap:6px;margin-top:8px;
+  background:rgba(61,214,224,.1);border:1px solid rgba(61,214,224,.3);
+  color:var(--e5)!important;border-radius:8px;padding:6px 13px;
+  font-size:.76rem!important;font-weight:600;transition:all var(--transition)!important;
+}
+.f-maps-btn:hover{background:rgba(61,214,224,.2)!important;border-color:rgba(61,214,224,.5)!important;transform:translateX(3px);}
+.f-hours-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.f-hours-row:last-of-type{border-bottom:none}
+.f-hours-day{color:rgba(255,255,255,.4);font-size:.74rem}
+.f-hours-time{color:rgba(255,255,255,.7);font-size:.76rem;font-weight:500}
+.f-emergency-tag{
+  display:inline-flex;align-items:center;gap:5px;margin-top:10px;
+  background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.25);
+  border-radius:20px;padding:4px 12px;color:#e74c3c;font-size:.74rem;font-weight:600;
+}
+.f-emergency-tag::before{content:'';width:6px;height:6px;background:#e74c3c;border-radius:50%;animation:pd 1.5s infinite}
+.f-ivr-card{
+  background:rgba(61,214,224,.06);border:1px solid rgba(61,214,224,.14);
+  border-radius:10px;padding:12px 14px;margin-top:10px;
+}
+.f-ivr-title{color:#3dd6e0;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:9px}
+.f-ivr-items{display:flex;flex-direction:column;gap:5px}
+.f-ivr-item{display:flex;align-items:center;gap:8px;font-size:.76rem;color:rgba(255,255,255,.5)}
+.f-ivr-num{
+  width:20px;height:20px;border-radius:50%;
+  background:rgba(61,214,224,.15);border:1px solid rgba(61,214,224,.3);
+  color:#3dd6e0;font-size:.65rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+
+/* Divider line */
+.f-divider{
+  height:1px;margin:0 48px;
+  background:linear-gradient(to right,transparent,rgba(255,255,255,.08),transparent);
+}
+.f-bottom-bar{
+  padding:16px 48px;display:flex;align-items:center;justify-content:space-between;
+  position:relative;z-index:2;
+}
+.f-copy{color:rgba(255,255,255,.25);font-size:.7rem}
+.f-badge{
+  display:flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:20px;padding:5px 12px;color:rgba(255,255,255,.35);font-size:.68rem;
+}
+.f-heart{color:#e74c3c;animation:hb .9s ease-in-out infinite alternate}
+@keyframes hb{from{transform:scale(1)}to{transform:scale(1.2)}}
+
+/* ═══════════════════════════════════════════════
+   FULLY RESPONSIVE — MOBILE · TABLET · DESKTOP
+   Breakpoints: 480 · 768 · 1024 · 1280+
+═══════════════════════════════════════════════ */
+
+/* ── TABLET (≤1024px) ── */
+@media(max-width:1024px){
+  /* Login */
+  .role-grid{grid-template-columns:repeat(2,1fr)}
+  /* Hero */
+  .page-hero{padding:14px 20px}
+  .hero-names .en{font-size:1.3rem}
+  .hero-right{gap:8px}
+  .tok-display{padding:6px 12px;font-size:.78rem}
+  .role-pill{display:none}
+  /* Nav */
+  .nav-strip{padding:0 12px}
+  .nav-tab{padding:12px 13px;font-size:.78rem}
+  /* Layouts → single column */
+  .r-wrap{grid-template-columns:1fr;padding:16px 20px;gap:16px}
+  .doc-grid{grid-template-columns:1fr;padding:0 20px 20px}
+  .ai-layout{grid-template-columns:1fr;padding:0}
+  .ai-outer{padding:16px 20px}
+  .med-grid{grid-template-columns:1fr}
+  /* Doctor stats */
+  .doc-stat-row{gap:7px}
+  .doc-stat{padding:8px 12px;min-width:60px}
+  .ds-num{font-size:1.5rem}
+  .doc-page{padding:16px 20px}
+  /* Token card */
+  .tc-num{font-size:4.5rem}
+  /* Footer */
+  .f-info-grid{grid-template-columns:1fr 1fr;padding:0 24px}
+  .f-info-col:nth-child(2){border-right:none}
+  .f-info-col:nth-child(3){grid-column:1/-1;border-top:1px solid rgba(255,255,255,.06);border-right:none}
+  .f-top-overlay{padding:0 28px 28px}
+}
+
+/* ── MOBILE (≤768px) ── */
+@media(max-width:768px){
+  /* Login hero */
+  .login-hero{padding:36px 20px 24px}
+  .hero-cross{width:54px;height:54px;font-size:1.3rem}
+  .hero-main{font-size:1.9rem}
+  .hero-te{font-size:1rem}
+  .hero-sub{font-size:.76rem}
+  .login-card-wrap{padding:0 16px 36px}
+  .login-card{padding:24px 20px;border-radius:18px}
+  .lc-heading{font-size:1.4rem}
+  .role-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .rc{padding:10px 8px}
+  .rc .ri{font-size:1.3rem}
+  .rc .rn{font-size:.76rem}
+  .rc .rs{display:none}
+
+  /* Top bar */
+  .page-hero{padding:12px 16px}
+  .hero-icon{width:40px;height:40px;font-size:1.1rem}
+  .hero-names .en{font-size:1.1rem}
+  .hero-names .te{font-size:.72rem}
+  .tok-display{padding:5px 10px;font-size:.75rem;gap:5px}
+  .logout-btn{padding:5px 10px;font-size:.72rem}
+
+  /* Nav tabs — scrollable horizontal strip */
+  .nav-strip{padding:0 8px;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .nav-strip::-webkit-scrollbar{display:none}
+  .nav-tab{padding:12px 13px;font-size:.75rem;white-space:nowrap;flex-shrink:0}
+
+  /* Section heading */
+  .sh{padding:16px 16px 0;font-size:1.25rem}
+
+  /* Reception */
+  .r-wrap{padding:12px 14px;gap:14px}
+  .card{padding:16px}
+  .fr{grid-template-columns:1fr;gap:10px;margin-bottom:10px}
+  .tc-num{font-size:4rem}
+  .tc-acts{flex-wrap:wrap;gap:7px}
+  .tc-btn{flex:1;justify-content:center;min-width:120px}
+  .tok-card{padding:22px 18px}
+
+  /* Doctor room — fix white space overflow */
+  .doc-page{padding:12px 14px;width:100%;max-width:100vw;overflow-x:hidden}
+  .doc-hero{padding:14px 14px;flex-direction:column;align-items:flex-start;gap:12px;border-radius:14px;width:100%;box-sizing:border-box}
+  .dh-title{font-size:1.25rem}
+  .doc-stat-row{width:100%;display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+  .doc-stat{padding:10px 8px;min-width:unset;width:100%}
+  .ds-num{font-size:1.6rem}
+  .ds-lbl{font-size:.56rem}
+  .doc-grid{grid-template-columns:1fr !important;gap:12px;width:100%}
+  .call-panel{padding:16px 14px;width:100%;box-sizing:border-box}
+  .cp-num{font-size:3rem}
+  .pat-card{padding:14px;width:100%;box-sizing:border-box}
+  .pa-header{gap:10px}
+  .pa-avatar{width:46px;height:46px;font-size:1.15rem;border-radius:12px;flex-shrink:0}
+  .pa-name{font-size:1.05rem}
+  .pa-meta{font-size:.73rem;word-break:break-word}
+  /* Prescription type buttons */
+  .rx-type-row{gap:5px;flex-wrap:wrap}
+  .rx-type-btn{padding:5px 9px;font-size:.7rem}
+  /* Rx input stack on mobile */
+  .rx-input-row{flex-direction:column;gap:8px}
+  .rx-input-row .rx-main,.rx-input-row .rx-dose,.rx-input-row .rx-days,.rx-input-row .btn{width:100% !important;min-width:unset}
+
+  /* AI Bot */
+  .ai-outer{padding:12px 14px}
+  .ai-layout{gap:14px}
+  .robot-sidebar{padding:18px 16px}
+  .robot-globe{width:96px;height:96px;font-size:3.5rem}
+  .chat-window{height:480px;border-radius:16px}
+  .qt-list{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .qt-i{font-size:.74rem;padding:7px 9px}
+
+  /* Medical room */
+  .med-wrap{padding:12px 14px}
+  .med-hero{flex-direction:column;align-items:flex-start;gap:14px;padding:18px 18px;border-radius:14px}
+  .med-stats{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .m-stat{min-width:unset}
+  .ms-num{font-size:1.5rem}
+  .med-grid{grid-template-columns:1fr;gap:12px}
+  .rx-card-top{flex-wrap:wrap;gap:10px}
+  .ma-btns{gap:6px}
+  .ma-btn{font-size:.72rem;padding:6px 10px}
+
+  /* Hall display */
+  .hall-view{padding:24px 16px;gap:20px}
+  .hall-box{padding:28px 28px;border-radius:20px}
+  .hall-num{font-size:5rem}
+  .hall-nx{font-size:1.1rem}
+  .h-logo{font-size:1.4rem}
+  .hall-status{padding:8px 18px;font-size:.82rem}
+
+  /* Footer */
+  .f-top-band{height:220px}
+  .f-top-overlay{padding:0 18px 22px}
+  .f-clinic-names .f-en{font-size:1.6rem}
+  .f-cross-icon{width:48px;height:48px;font-size:1.2rem}
+  .f-info-grid{grid-template-columns:1fr;padding:0 18px}
+  .f-info-col{padding:20px 14px;border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}
+  .f-info-col:last-child{border-bottom:none}
+  .f-divider{margin:0 18px}
+  .f-bottom-bar{flex-direction:column;gap:7px;text-align:center;padding:14px 18px}
+}
+
+/* ── SMALL MOBILE (≤480px) ── */
+@media(max-width:480px){
+  body,#app,.view,.doc-page,.r-wrap,.ai-outer,.med-wrap{max-width:100vw;overflow-x:hidden}
+  .hero-main{font-size:1.55rem}
+  .hero-te{font-size:.88rem}
+  .login-card{padding:20px 16px}
+  .role-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-names .en{font-size:.88rem;line-height:1.3}
+  .hero-names .te{font-size:.64rem}
+  .tok-display span:not(strong){display:none}
+  .logout-btn{padding:5px 8px;font-size:.68rem}
+  .tc-num{font-size:3.2rem}
+  .fr{grid-template-columns:1fr}
+  .doc-stat-row{grid-template-columns:repeat(2,1fr)}
+  .doc-grid{grid-template-columns:1fr !important}
+  .cp-num{font-size:2.8rem}
+  .chat-window{height:400px}
+  .qt-list{grid-template-columns:1fr}
+  .hall-num{font-size:3.8rem}
+  .hall-box{padding:20px 16px}
+  .f-clinic-names .f-en{font-size:1.25rem}
+  .f-clinic-names .f-te{font-size:.82rem}
+  #rx-print-div{padding:10px !important}
+}
+</style>
+</head>
+<body>
+
+<!-- ═════════════════ LOGIN PAGE ═════════════════ -->
+<div id="login-page">
+  <div class="login-mesh">
+    <div class="mesh-circle mc1"></div>
+    <div class="mesh-circle mc2"></div>
+    <div class="mesh-circle mc3"></div>
+  </div>
+  <div class="login-grid"></div>
+
+  <!-- Grand Hero Title -->
+  <div class="login-hero">
+    <div class="hero-cross">✚</div>
+    <div class="hero-main"><span class="cross-accent">✚</span> Praja Vaidyasala</div>
+    <div class="hero-te">ప్రజా వైద్యశాల</div>
+    <div class="hero-divider"></div>
+    <div class="hero-sub">Smart Clinic Management System — Addanki, Andhra Pradesh</div>
+  </div>
+
+  <!-- Login Card -->
+  <div class="login-card-wrap">
+    <div class="login-card">
+      <div class="lc-heading">Welcome Back</div>
+      <div class="lc-sub">Select your role and sign in to continue</div>
+
+      <div class="role-grid">
+        <div class="rc sel" onclick="selRole('reception')" id="rc-reception">
+          <div class="ri">🏥</div>
+          <div class="rn">Receptionist</div>
+          <div class="rs">Front desk</div>
+        </div>
+        <div class="rc" onclick="selRole('doctor')" id="rc-doctor">
+          <div class="ri">👨‍⚕️</div>
+          <div class="rn">Doctor</div>
+          <div class="rs">Doctor room</div>
+        </div>
+        <div class="rc" onclick="selRole('nurse')" id="rc-nurse">
+          <div class="ri">💊</div>
+          <div class="rn">Nurse</div>
+          <div class="rs">Medical room</div>
+        </div>
+        <div class="rc" onclick="selRole('admin')" id="rc-admin">
+          <div class="ri">⚙️</div>
+          <div class="rn">Admin</div>
+          <div class="rs">Full access</div>
+        </div>
+      </div>
+
+      <div class="lf"><label>Username</label><input id="l-user" type="text" value="reception" placeholder="Enter username"></div>
+      <div class="lf"><label>Password</label><input id="l-pass" type="password" value="1234" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
+      <div class="l-err" id="l-err">❌ Invalid credentials. Please try again.</div>
+      <button class="btn-login" onclick="doLogin()">Sign In →</button>
+      <div class="l-demo">Demo: any username · password <strong>1234</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═════════════════ MAIN APP ═════════════════ -->
+<div id="app">
+
+  <!-- Page Hero with Grand Title -->
+  <div class="page-hero">
+    <div class="hero-title-row">
+      <div class="hero-brand">
+        <div class="hero-icon">✚</div>
+        <div class="hero-names">
+          <div class="en">✚ Praja Vaidyasala</div>
+          <div class="te">ప్రజా వైద్యశాల — అడ్డంకి, ఆంధ్రప్రదేశ్</div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="role-pill" id="role-pill">Reception</div>
+        <div class="tok-display"><div class="tok-dot"></div>Token: <strong id="nav-tok">0</strong></div>
+        <button class="logout-btn" onclick="doLogout()">← Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nav strip -->
+  <div class="nav-strip" id="nav-strip">
+    <!-- tabs built by JS -->
+  </div>
+  <!-- Live sync bar under nav -->
+  <div id="sync-bar" style="display:none;background:#021f2b;padding:4px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(61,214,224,.15)">
+    <div id="sync-status" style="display:flex;align-items:center;gap:7px;font-size:.72rem;color:rgba(255,255,255,.55)">
+      <span id="sync-dot" style="width:7px;height:7px;background:#3dd6e0;border-radius:50%;display:inline-block;animation:pd 1.5s infinite"></span>
+      <span id="sync-label">Live sync ON — updates every 3 seconds</span>
+    </div>
+    <button onclick="manualRefresh()" style="background:rgba(61,214,224,.12);border:1px solid rgba(61,214,224,.25);color:#3dd6e0;border-radius:20px;padding:3px 12px;font-size:.7rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif">🔄 Refresh Now</button>
+  </div>
+
+  <!-- Emergency Alert -->
+  <div class="em-alert" id="em-alert">
+    <div style="font-weight:700;font-size:1rem;margin-bottom:4px">⚠️ EMERGENCY ALERT</div>
+    <div id="em-msg" style="font-size:.83rem;opacity:.9">Patient needs immediate attention!</div>
+  </div>
+
+  <!-- MongoDB Status Indicator (auto-appears after login) -->
+  <!-- Toast -->
+  <div class="toast" id="toast">✅ <span id="toast-msg"></span></div>
+
+  <!-- ═══ RECEPTION ═══ -->
+  <div class="view" id="view-reception">
+    <div class="sh">🏥 Patient Registration &amp; Token Queue</div>
+    <div class="r-wrap">
+      <div class="card" style="padding:24px">
+        <div class="ct">New Patient Registration <span class="T" style="font-size:.78rem;color:var(--muted);font-weight:400">కొత్త పేషెంట్ నమోదు</span></div>
+        <div class="fr">
+          <div class="fg"><label>Full Name (పేరు)</label><input id="r-name" type="text" placeholder="Patient full name"></div>
+          <div class="fg"><label>Age (వయసు)</label><input id="r-age" type="number" placeholder="Age" min="1" max="120"></div>
+        </div>
+        <div class="fr">
+          <div class="fg"><label>Gender</label><select id="r-gender"><option>Male</option><option>Female</option><option>Other</option></select></div>
+          <div class="fg"><label>Phone (ఫోన్)</label><input id="r-phone" type="tel" placeholder="Mobile number"></div>
+        </div>
+        <div class="fr">
+          <div class="fg"><label>Village / Area (గ్రామం)</label><input id="r-village" type="text" placeholder="Village or area"></div>
+          <div class="fg"><label>Priority</label>
+            <select id="r-priority"><option value="normal">Normal</option><option value="urgent">Urgent</option><option value="emergency">🚨 Emergency</option></select>
+          </div>
+        </div>
+        <div class="fg full" style="margin-bottom:16px">
+          <label>Symptoms / Chief Complaints (లక్షణాలు)</label>
+          <textarea id="r-symptoms" placeholder="Describe symptoms in Telugu or English…"></textarea>
+        </div>
+        <button class="btn btn-em bfw" onclick="regPatient()">🎫 Register &amp; Generate Token</button>
+      </div>
+      <div>
+        <div class="tok-card">
+          <div class="tc-label">Now Serving Token</div>
+          <div class="tc-num" id="cur-tok">0</div>
+          <div class="tc-sub">Next: <strong id="nxt-tok">—</strong> &nbsp;·&nbsp; Waiting: <strong id="wait-cnt">0</strong></div>
+          <div class="tc-acts">
+            <button class="tc-btn" onclick="resetQ()">↺ Reset Queue</button>
+            <button class="tc-btn" id="eod-btn" onclick="endOfDay()" style="background:rgba(192,57,43,.25);border-color:rgba(231,76,60,.4);color:#ff9999">🗑️ Delete All</button>
+          </div>
+        </div>
+        <div class="card" style="padding:20px">
+          <div class="ct">Today's Queue <span class="T" style="font-size:.74rem;color:var(--muted);font-weight:400">వేచి ఉన్నవారు</span></div>
+          <div class="ql" id="queue-list"><div style="color:var(--muted);text-align:center;padding:18px;font-size:.84rem">No patients yet ☝️</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ DOCTOR ROOM ═══ -->
+  <div class="view" id="view-doctor">
+    <div class="doc-page">
+      <div class="doc-hero">
+        <div>
+          <div class="dh-title">👨‍⚕️ Doctor's Room</div>
+          <div class="dh-sub">డాక్టర్ రూమ్ — Praja Vaidyasala, Addanki</div>
+        </div>
+        <div class="doc-stat-row">
+          <div class="doc-stat"><div class="ds-num" id="ds-total">0</div><div class="ds-lbl">Total</div></div>
+          <div class="doc-stat"><div class="ds-num" id="ds-wait">0</div><div class="ds-lbl">Waiting</div></div>
+          <div class="doc-stat"><div class="ds-num" id="ds-done">0</div><div class="ds-lbl">Seen</div></div>
+          <div class="doc-stat"><div class="ds-num" id="ds-em">0</div><div class="ds-lbl">Emergency</div></div>
+        </div>
+      </div>
+      <div class="doc-grid">
+        <div>
+          <div class="call-panel">
+            <div class="cp-label">Current Token</div>
+            <div class="cp-num" id="doc-cur-tok">0</div>
+            <div class="cp-info">Waiting: <strong id="doc-wait-cnt">0</strong> patients</div>
+            <button class="call-btn" id="call-btn" onclick="callNext()">🔔 Call Next Patient</button>
+          </div>
+          <div class="card" style="padding:18px;max-height:440px;overflow-y:auto">
+            <div class="ct">Patient List</div>
+            <div class="ql" id="doc-list"><div style="color:var(--muted);text-align:center;padding:16px">No patients yet</div></div>
+          </div>
+        </div>
+        <div>
+          <div id="pat-detail" class="pat-card">
+            <div style="color:var(--muted);text-align:center;padding:40px;font-size:.88rem;line-height:1.8">
+              <div style="font-size:2.5rem;margin-bottom:12px">👈</div>
+              Select a patient or click <strong>Call Next</strong> to begin
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ AI BOT ═══ -->
+  <div class="view" id="view-ai">
+    <div class="sh">🤖 AI Health Assistant <span class="T" style="font-size:.86rem;font-weight:400;color:var(--muted)">ఆరోగ్య సహాయకుడు</span></div>
+    <div class="ai-outer">
+      <div class="ai-layout">
+        <div class="robot-sidebar">
+          <div class="robot-globe" id="r-icon">🤖<div class="r-online" id="rdot"></div></div>
+          <div class="vwave idle" id="vwave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="r-name">Dr. Arogya Bot</div>
+          <div class="r-sub">ప్రజా వైద్యశాల<br><span style="font-family:'Outfit',sans-serif;font-size:.68rem">AI Health Assistant</span></div>
+          <div class="lsw">
+            <button class="lb active" id="btn-te" onclick="setLang('te')">తెలుగు</button>
+            <button class="lb" id="btn-en" onclick="setLang('en')">English</button>
+          </div>
+          <div class="div" style="width:100%"></div>
+          <div style="font-size:.64rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.8px;align-self:flex-start">Quick Topics</div>
+          <div class="qt-list">
+            <div class="qt-i" onclick="sq('నాకు జ్వరం ఉంది')">🌡️ జ్వరం (Fever)</div>
+            <div class="qt-i" onclick="sq('నాకు దగ్గు ఉంది')">🤧 దగ్గు (Cough)</div>
+            <div class="qt-i" onclick="sq('నాకు కడుపు నొప్పి ఉంది')">🤢 కడుపు నొప్పి (Stomach)</div>
+            <div class="qt-i" onclick="sq('నాకు తలనొప్పి ఉంది')">🤕 తలనొప్పి (Headache)</div>
+            <div class="qt-i" onclick="sq('నాకు రక్తపోటు సమస్య ఉంది')">❤️ రక్తపోటు (BP)</div>
+            <div class="qt-i" onclick="sq('నాకు మధుమేహం ఉంది')">🩺 మధుమేహం (Diabetes)</div>
+            <div class="qt-i" onclick="sq('నాకు వీపు నొప్పి ఉంది')">🦴 వీపు నొప్పి (Back Pain)</div>
+            <div class="qt-i" onclick="sq('నా కళ్ళు ఎర్రగా ఉన్నాయి')">👁️ కళ్ళ సమస్య (Eye)</div>
+            <div class="qt-i" onclick="sq('నాకు చర్మంపై దద్దుర్లు వచ్చాయి')">🩹 చర్మ సమస్య (Skin)</div>
+            <div class="qt-i" onclick="sq('నాకు నిద్ర సమస్య ఉంది')">😴 నిద్ర సమస్య (Sleep)</div>
+            <div class="qt-i" onclick="sq('డాక్టర్ ఎప్పుడు వస్తారు?')">❓ డాక్టర్ సమాచారం</div>
+            <div class="qt-i" onclick="sq('నా టోకెన్ నెంబర్ ఏమిటి?')">🎫 టోకెన్ నెంబర్</div>
+            <div class="qt-i danger" onclick="sq('నాకు ఛాతీ నొప్పి ఉంది')">⚠️ ఛాతీ నొప్పి (Emergency)</div>
+          </div>
+        </div>
+        <div class="chat-window">
+          <div class="chat-top">
+            <div style="font-size:1.5rem">🤖</div>
+            <div>
+              <div class="chat-top-name">Dr. Arogya Bot</div>
+              <div class="chat-top-sub">నమస్కారం! మీకు ఎలా సహాయపడగలను?</div>
+            </div>
+            <div class="spk-badge" id="spkb">🔊 Speaking…</div>
+          </div>
+          <div class="chat-msgs" id="chat-msgs">
+            <div class="msg">
+              <div class="mav">🤖</div>
+              <div class="mb T">నమస్కారం! నేను Dr. Arogya Bot. మీ ఆరోగ్య సమస్యలు నాకు చెప్పండి — నేను తెలుగులో మాట్లాడి సమాధానం ఇస్తాను! 🙏</div>
+            </div>
+          </div>
+          <div class="chat-foot">
+            <div class="ci-row">
+              <input type="text" id="chat-in" placeholder="మీ లక్షణాలు టైప్ చేయండి… (Type symptoms)" onkeydown="if(event.key==='Enter')sendMsg()">
+              <button class="mic-btn" id="mic-btn" onclick="toggleMic()" title="Voice input">🎤</button>
+              <button class="send-btn" onclick="sendMsg()">➤</button>
+            </div>
+            <div class="vsbar" id="vsbar">🔈 Voice reply ON — bot will speak in Telugu</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ MEDICAL ROOM ═══ -->
+  <div class="view" id="view-medical">
+    <div class="med-wrap">
+      <div class="med-hero">
+        <div>
+          <div class="med-hero-title">💊 Medical Room — Pharmacy</div>
+          <div class="med-hero-sub">వైద్య గది — డాక్టర్ పంపిన మందుల వివరాలు</div>
+        </div>
+        <div class="med-stats">
+          <div class="m-stat"><div class="ms-num" id="ms-pending">0</div><div class="ms-lbl">Pending</div></div>
+          <div class="m-stat"><div class="ms-num" id="ms-ready">0</div><div class="ms-lbl">Ready</div></div>
+          <div class="m-stat"><div class="ms-num" id="ms-given">0</div><div class="ms-lbl">Given</div></div>
+        </div>
+      </div>
+      <div class="med-grid" id="med-grid">
+        <div style="color:var(--muted);text-align:center;padding:48px;grid-column:1/-1;background:#fff;border-radius:16px;border:1.5px dashed var(--border)">
+          <div style="font-size:2.5rem;margin-bottom:12px">💊</div>
+          No prescriptions yet.<br><span style="font-size:.82rem">Prescriptions from the doctor will appear here.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ HALL DISPLAY ═══ -->
+  <div class="view" id="view-hall">
+    <div class="hall-view">
+      <div class="hstars" id="hstars"></div>
+      <div class="h-logo">✚ Praja Vaidyasala<span>ప్రజా వైద్యశాల — అడ్డంకి</span></div>
+      <div class="hall-box">
+        <div class="hall-lbl">Now Serving — Token</div>
+        <div class="hall-num" id="hall-num">0</div>
+        <div class="hall-nx">Next: <strong id="hall-nxt">—</strong> &nbsp;·&nbsp; In Queue: <strong id="hall-qc">0</strong></div>
+        <div class="hall-time" id="htime"></div>
+      </div>
+      <div class="hall-status"><div class="hgdot"></div><span>Doctor Available — డాక్టర్ అందుబాటులో ఉన్నారు</span></div>
+      <div class="hall-ticker"><div class="ticker-in">🌿 ప్రజా వైద్యశాలకు స్వాగతం &nbsp;|&nbsp; Welcome to Praja Vaidyasala, Addanki &nbsp;|&nbsp; మీ టోకెన్ వచ్చినప్పుడు లోపలికి రండి &nbsp;|&nbsp; Please maintain silence &nbsp;|&nbsp; ఆరోగ్యమే మహాభాగ్యం 🙏 &nbsp;|&nbsp; Emergency: 085932 23404 &nbsp;|&nbsp;</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div id="hfoot" style="display:none">
+    <!-- Clinic photo with overlay -->
+    <div class="f-top-band">
+      <img src="/mnt/user-data/uploads/1773470397152_image.png" alt="Praja Vaidyasala" onerror="this.style.display='none'">
+      <div class="f-top-overlay">
+        <div class="f-clinic-hero">
+          <div class="f-cross-icon">✚</div>
+          <div class="f-clinic-names">
+            <div class="f-en">Praja Vaidyasala</div>
+            <div class="f-te">ప్రజా వైద్యశాల</div>
+            <div class="f-sub">Community Healthcare Centre · Addanki, Andhra Pradesh</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info columns -->
+    <div class="f-info-grid">
+      <div class="f-info-col">
+        <div class="f-col-icon">📍</div>
+        <div class="f-col-title">Address</div>
+        <div class="f-col-body">
+          <p>RX7C+C95, Indira Nagar,</p>
+          <p>Addanki, Andhra Pradesh 523201</p>
+          <a href="https://share.google/VRpmkkBRR1ibYB5ij" target="_blank" class="f-maps-btn">📌 Open in Google Maps →</a>
+        </div>
+      </div>
+      <div class="f-info-col">
+        <div class="f-col-icon">🕒</div>
+        <div class="f-col-title">Clinic Hours</div>
+        <div class="f-col-body">
+          <div class="f-hours-row"><span class="f-hours-day">Mon – Sat</span><span class="f-hours-time">9:00 AM – 8:00 PM</span></div>
+          <div class="f-hours-row"><span class="f-hours-day">Sunday</span><span class="f-hours-time">10:00 AM – 2:00 PM</span></div>
+          <div class="f-emergency-tag">🚨 Emergency: Anytime</div>
+          <p class="T" style="font-size:.74rem;color:rgba(255,255,255,.35);margin-top:6px">అత్యవసర సేవలు ఎల్లప్పుడూ</p>
+        </div>
+      </div>
+      <div class="f-info-col">
+        <div class="f-col-icon">📞</div>
+        <div class="f-col-title">Contact</div>
+        <div class="f-col-body">
+          <a href="tel:08593223404" class="f-phone-link">085932 23404</a>
+          <div class="f-ivr-card">
+            <div class="f-ivr-title">IVR Phone Menu</div>
+            <div class="f-ivr-items">
+              <div class="f-ivr-item"><div class="f-ivr-num">1</div> Book Appointment</div>
+              <div class="f-ivr-item"><div class="f-ivr-num">2</div> Health Tips</div>
+              <div class="f-ivr-item"><div class="f-ivr-num">3</div> Check Token Status</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="f-divider"></div>
+    <div class="f-bottom-bar">
+      <div class="f-copy">© 2026 ప్రజా వైద్యశాల — Praja Vaidyasala · Smart Clinic Management System</div>
+      <div class="f-badge">Built with <span class="f-heart">♥</span> for Addanki community</div>
+    </div>
+  </div>
+
+</div><!-- /app -->
+
+<script>
+// ════════════════════════════════════════════════════════
+//  SUPABASE DATABASE — Direct Browser Connection
+//  Supabase is a free Postgres database with REST API
+//  Works directly from any browser — no server needed!
+// ════════════════════════════════════════════════════════
+
+// ── SUPABASE CREDENTIALS ─────────────────────────────────
+//  Get these from: https://supabase.com → Your Project → Settings → API
+let SUPA_URL = '';          // e.g. https://xxxx.supabase.co
+let SUPA_KEY = '';          // anon/public key (safe for browser)
+// ─────────────────────────────────────────────────────────
+
+// Load saved credentials from browser storage
+(function(){
+  const c = JSON.parse(localStorage.getItem('supa_config')||'{}');
+  if(c.url) SUPA_URL = c.url;
+  if(c.key) SUPA_KEY = c.key;
+})();
+
+function supaConfigured(){ return SUPA_URL.includes('supabase.co') && SUPA_KEY.length > 10; }
+
+// ── Supabase REST API helper ──────────────────────────────
+async function supa(method, table, opts={}) {
+  if(!supaConfigured()) return null;
+  try {
+    const url = new URL(`${SUPA_URL}/rest/v1/${table}`);
+    if(opts.select)  url.searchParams.set('select', opts.select);
+    if(opts.filter)  Object.entries(opts.filter).forEach(([k,v])=> url.searchParams.set(k, v));
+    if(opts.order)   url.searchParams.set('order', opts.order);
+    if(opts.limit)   url.searchParams.set('limit', opts.limit);
+    const headers = {
+      'apikey': SUPA_KEY,
+      'Authorization': `Bearer ${SUPA_KEY}`,
+      'Content-Type': 'application/json',
+    };
+    // For GET/DELETE no body, for POST/PATCH include body + Prefer header
+    if(method==='POST'||method==='PATCH'){
+      headers['Prefer']='return=representation';
+    }
+    console.log('Supabase',method,url.toString().replace(SUPA_URL,''));
+    const res = await fetch(url.toString(), {
+      method, headers,
+      body: (method==='POST'||method==='PATCH') && opts.body
+        ? JSON.stringify(opts.body) : undefined
+    });
+    // DELETE returns 204 no content
+    if(method==='DELETE') return res.ok ? [] : null;
+    if(!res.ok){
+      const e=await res.text();
+      console.error('Supabase error',method,table,res.status,e);
+      return null;
+    }
+    const text = await res.text();
+    const result = text ? JSON.parse(text) : [];
+    console.log('Supabase result',table,'rows:',Array.isArray(result)?result.length:result);
+    return result;
+  } catch(e) { console.warn('Supabase fetch failed:', e.message); return null; }
+}
+
+// Upsert helper (insert or update on conflict)
+async function supaUpsert(table, body, onConflict='id') {
+  if(!supaConfigured()) return null;
+  try {
+    const url = `${SUPA_URL}/rest/v1/${table}`;
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPA_KEY,
+        'Authorization': `Bearer ${SUPA_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': `resolution=merge-duplicates,return=representation`
+      },
+      body: JSON.stringify(body)
+    });
+    if(!res.ok){ const e=await res.text(); console.warn('Supabase upsert error:',e); return null; }
+    return await res.json();
+  } catch(e){ console.warn('Supabase upsert failed:',e.message); return null; }
+}
+
+// ── Today's date ─────────────────────────────────────────
+function todayStr(){
+  // Use LOCAL date not UTC — avoids mismatch when devices are in different timezones
+  const d = new Date();
+  const yr = d.getFullYear();
+  const mo = String(d.getMonth()+1).padStart(2,'0');
+  const dy = String(d.getDate()).padStart(2,'0');
+  return yr+'-'+mo+'-'+dy;
+}
+
+// ── DB operations ─────────────────────────────────────────
+async function dbSavePatient(p) {
+  return await supa('POST','patients',{ body:{
+    token:p.token, name:p.name, age:parseInt(p.age)||0,
+    gender:p.gender, phone:p.phone||'', village:p.village||'',
+    symptoms:p.symptoms, priority:p.priority, status:p.status,
+    prescription:JSON.stringify(p.prescription||[]),
+    rx_sent:false, visit_date:todayStr()
+  }});
+}
+
+async function dbUpdatePatientStatus(token, status) {
+  return await supa('PATCH','patients',{
+    filter:{'token':'eq.'+token,'visit_date':'eq.'+todayStr()},
+    body:{status}
+  });
+}
+
+async function dbSavePrescription(p) {
+  return await supa('PATCH','patients',{
+    filter:{'token':'eq.'+p.token,'visit_date':'eq.'+todayStr()},
+    body:{prescription:JSON.stringify(p.prescription), rx_sent:p.rxSent}
+  });
+}
+
+async function dbSendToMedRoom(entry) {
+  return await supaUpsert('medical_prescriptions',{
+    token:      entry.token,
+    patient_name: entry.name || entry.patient_name || '—',
+    age:        entry.age,
+    gender:     entry.gender || '',
+    phone:      entry.phone || '',
+    village:    entry.village || '',
+    symptoms:   entry.symptoms || '',
+    priority:   entry.priority || 'normal',
+    meds:       JSON.stringify(entry.meds || []),
+    status:     'pending',
+    sent_to_phone: false,
+    visit_date: todayStr()
+  },'token');
+}
+
+async function dbUpdateMedStatus(token, status, sentToPhone=false) {
+  const body = {status};
+  if(sentToPhone) body.sent_to_phone=true;
+  return await supa('PATCH','medical_prescriptions',{
+    filter:{'token':'eq.'+token,'visit_date':'eq.'+todayStr()},
+    body
+  });
+}
+
+// ── Load today's data from Supabase ──────────────────────
+async function loadFromDB() {
+  if(!supaConfigured()){ showDBStatus(false); return; }
+  try {
+    showToast('⏳ Loading data from Supabase…');
+    await syncAllFromDB();
+    showDBStatus(true);
+    showToast(`✅ Supabase connected — ${patients.length} patients loaded`);
+    // Start fast polling immediately after first load
+    startPolling();
+  } catch(e){
+    showDBStatus(false);
+    showToast('⚠️ Supabase offline — using local mode',true);
+    console.warn('loadFromDB error:',e);
+  }
+}
+
+// ── Core sync function — fetches everything from DB ──────
+async function syncAllFromDB(){
+  const today = todayStr();
+  console.log('Syncing from Supabase, today =', today);
+
+  // Fetch patients — try with date filter first, fall back to all recent
+  let pRes = await supa('GET','patients',{
+    filter:{'visit_date':'eq.'+today},
+    order:'token.asc', select:'*'
+  });
+
+  // If empty with filter, try fetching last 50 rows (handles date mismatch)
+  if(!pRes || (Array.isArray(pRes) && pRes.length===0)){
+    console.warn('No patients with date filter, trying without filter...');
+    pRes = await supa('GET','patients',{
+      order:'token.asc', select:'*', limit:'50'
+    });
+    // Filter client-side to today's date OR show all if truly empty
+    if(pRes && Array.isArray(pRes) && pRes.length>0){
+      const todayRows = pRes.filter(p=>p.visit_date===today);
+      pRes = todayRows.length > 0 ? todayRows : pRes; // use today's or all
+    }
+  }
+
+  let mRes = await supa('GET','medical_prescriptions',{
+    filter:{'visit_date':'eq.'+today},
+    order:'created_at.desc', select:'*'
+  });
+  if(!mRes || (Array.isArray(mRes) && mRes.length===0)){
+    mRes = await supa('GET','medical_prescriptions',{
+      order:'created_at.desc', select:'*', limit:'50'
+    });
+    if(mRes && Array.isArray(mRes) && mRes.length>0){
+      const todayRows = mRes.filter(m=>m.visit_date===today);
+      mRes = todayRows.length > 0 ? todayRows : mRes;
+    }
+  }
+
+  if(pRes && Array.isArray(pRes)){
+    patients = pRes.map(p=>{
+      const dbRx = typeof p.prescription==='string'
+        ? JSON.parse(p.prescription||'[]')
+        : (p.prescription||[]);
+      // Preserve locally-added prescription if DB hasn't been saved yet
+      const existingPat = patients.find(ep=>ep.token===p.token);
+      const localRx = existingPat && existingPat.prescription && existingPat.prescription.length > 0
+        ? existingPat.prescription : null;
+      // Use whichever is longer (more items = more up to date)
+      const finalRx = (localRx && localRx.length > dbRx.length) ? localRx : dbRx;
+      return {
+        ...p,
+        id:    p.id || p.token,
+        name:  p.name || '—',
+        phone: p.phone || '',
+        village: p.village || '',
+        gender: p.gender || '',
+        prescription: finalRx,
+        rxSent: p.rx_sent || (existingPat&&existingPat.rxSent) || false,
+        time: p.created_at
+          ? new Date(p.created_at).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})
+          : '--:--'
+      };
+    });
+    // Re-sync selPat — preserve local status and prescription
+    if(selPat){
+      const freshPat = patients.find(p=>p.token===selPat.token);
+      if(freshPat){
+        // If we marked as done locally but DB hasn't caught up yet, keep done
+        if(selPat.status==='done') freshPat.status='done';
+        // Keep whichever prescription is more complete
+        if(selPat.prescription && selPat.prescription.length > freshPat.prescription.length){
+          freshPat.prescription = [...selPat.prescription];
+        }
+        if(selPat.rxSent) freshPat.rxSent = true;
+        selPat = freshPat;
+      }
+    }
+    // Also ensure any locally-marked-done patients stay done during sync
+    patients.forEach(p=>{
+      if(p.status==='done') return; // already done in DB
+      // check if we had marked it done locally before DB confirmed
+    });
+    if(patients.length){
+      tokCounter = Math.max(...patients.map(p=>p.token));
+      const done = patients.filter(p=>p.status==='done');
+      currentTok = done.length ? Math.max(...done.map(p=>p.token)) : 0;
+    } else {
+      tokCounter = 0; currentTok = 0;
+    }
+    // Re-sync selPat after reload
+    if(selPat) selPat = patients.find(p=>p.token===selPat.token)||selPat;
+    updateNavTok();
+    const ct=document.getElementById('cur-tok');
+    const dct=document.getElementById('doc-cur-tok');
+    if(ct) ct.textContent=currentTok;
+    if(dct) dct.textContent=currentTok;
+    const wc=document.getElementById('wait-cnt');
+    const dwc=document.getElementById('doc-wait-cnt');
+    const wCount=patients.filter(p=>p.status==='waiting'||p.status==='emergency').length;
+    if(wc) wc.textContent=wCount;
+    if(dwc) dwc.textContent=wCount;
+  }
+
+  if(mRes && Array.isArray(mRes)){
+    medPrescriptions = mRes.map(m=>({
+      ...m,
+      // Map DB column names to app field names
+      name:        m.patient_name || m.name || '—',
+      patientId:   m.token,
+      phone:       m.phone || '',
+      village:     m.village || '—',
+      age:         m.age || '—',
+      gender:      m.gender || '—',
+      symptoms:    m.symptoms || '—',
+      priority:    m.priority || 'normal',
+      time:        m.created_at
+                     ? new Date(m.created_at).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})
+                     : (m.time || '--:--'),
+      meds:        typeof m.meds==='string' ? JSON.parse(m.meds||'[]') : (m.meds||[]),
+      sentToPhone: m.sent_to_phone || m.sentToPhone || false
+    }));
+  }
+
+  // Refresh all visible UI
+  renderQueue();
+  updateHall();
+  const activeView = document.querySelector('.view.active')?.id;
+  if(activeView==='view-doctor') refreshDoc();
+  if(activeView==='view-medical') renderMedRoom();
+  if(activeView==='view-reception') renderQueue();
+
+  // Update last-synced timestamp in sync bar
+  const now = new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  const sl = document.getElementById('sync-label');
+  const pCount = patients.length;
+  const wCount2 = patients.filter(p=>p.status==='waiting'||p.status==='emergency').length;
+  if(sl) sl.textContent = `Live sync ON · ${pCount} patients · ${wCount2} waiting · Last updated: ${now}`;
+}
+
+// ── Real-time polling — 2 seconds for instant cross-device sync ──
+let _poll=null;
+let _pollFailCount=0;
+
+function startPolling(){
+  if(_poll) clearInterval(_poll);
+  _pollFailCount=0;
+  _poll = setInterval(async()=>{
+    if(!supaConfigured()) return;
+    try {
+      await syncAllFromDB();
+      if(_pollFailCount>0){ _pollFailCount=0; showDBStatus(true); }
+    } catch(e){
+      _pollFailCount++;
+      console.warn('Poll failed #'+_pollFailCount, e.message);
+      if(_pollFailCount>=3) showDBStatus(false);
+    }
+  }, 2000); // Every 2 seconds — near real-time
+}
+
+function stopPolling(){
+  if(_poll){ clearInterval(_poll); _poll=null; }
+}
+
+// ── Manual refresh button ─────────────────────────────────
+async function manualRefresh(){
+  const btn = document.querySelector('[onclick="manualRefresh()"]');
+  if(btn){ btn.textContent='⏳ Syncing…'; btn.style.opacity='.6'; }
+  await syncAllFromDB();
+  if(btn){ btn.textContent='✅ Done!'; setTimeout(()=>{ btn.textContent='🔄 Refresh Now'; btn.style.opacity='1'; },1500); }
+}
+
+// ── DB Status badge ───────────────────────────────────────
+function showDBStatus(ok){
+  // Update sync bar
+  const syncBar=document.getElementById('sync-bar');
+  const syncDot=document.getElementById('sync-dot');
+  const syncLabel=document.getElementById('sync-label');
+  if(syncBar){
+    syncBar.style.display='flex';
+    if(syncDot) syncDot.style.background=ok?'#3dd6e0':'#e74c3c';
+    if(syncLabel) syncLabel.textContent=ok?'Live sync ON — all devices update every 3 sec':'Supabase offline — data not syncing';
+    if(syncDot) syncDot.style.animation=ok?'pd 1.5s infinite':'none';
+  }
+  // Badge
+  let el=document.getElementById('db-badge');
+  if(!el){
+    el=document.createElement('div');el.id='db-badge';
+    el.style.cssText='position:fixed;bottom:72px;right:20px;z-index:9990;display:flex;align-items:center;gap:7px;background:rgba(2,31,43,.92);color:#fff;border-radius:30px;padding:7px 14px;font-size:.74rem;font-weight:600;box-shadow:0 4px 14px rgba(0,0,0,.2);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);cursor:pointer;';
+    el.onclick=showSupaSetup;
+    document.body.appendChild(el);
+  }
+  const dot=ok?`<span style="width:8px;height:8px;background:#3dd6e0;border-radius:50%;display:inline-block;animation:pd 1.5s infinite"></span>`:`<span style="width:8px;height:8px;background:#e74c3c;border-radius:50%;display:inline-block"></span>`;
+  el.innerHTML=`${dot} Supabase ${ok?'Connected':supaConfigured()?'Offline':'Not Set'}`;
+  el.style.borderColor=ok?'rgba(61,214,224,.3)':'rgba(231,76,60,.3)';
+}
+
+// ── Supabase Setup Modal ──────────────────────────────────
+function showSupaSetup(){
+  let m=document.getElementById('supa-modal');
+  if(!m){m=document.createElement('div');m.id='supa-modal';document.body.appendChild(m);}
+  m.innerHTML=`
+  <div onclick="document.getElementById('supa-modal').style.display='none'" style="position:fixed;inset:0;background:rgba(2,31,43,.65);z-index:99990;backdrop-filter:blur(6px)"></div>
+  <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:99991;background:#fff;border-radius:22px;width:92%;max-width:500px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.3);animation:boxIn .3s cubic-bezier(.34,1.26,.64,1)">
+    <div style="background:linear-gradient(135deg,#021f2b,#074060);padding:20px 24px;color:#fff;display:flex;align-items:center;gap:12px">
+      <div style="width:44px;height:44px;background:rgba(255,255,255,.15);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0">⚡</div>
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700">Connect Supabase</div>
+        <div style="font-size:.76rem;opacity:.72;margin-top:1px">Free Postgres database — 2 minute setup</div>
+      </div>
+      <button onclick="document.getElementById('supa-modal').style.display='none'" style="margin-left:auto;background:rgba(255,255,255,.12);border:none;color:#fff;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:1rem">✕</button>
+    </div>
+    <div style="padding:22px 24px;font-family:'Outfit',sans-serif">
+      <div style="background:#f0f8fa;border-radius:11px;padding:14px 16px;font-size:.82rem;line-height:2;border-left:3px solid #0fa3b1;margin-bottom:18px;color:#021f2b">
+        <strong>2-Minute Setup:</strong><br>
+        1️⃣ Go to <a href="https://supabase.com" target="_blank" style="color:#0fa3b1;font-weight:700">supabase.com</a> → <strong>Sign up free</strong> (Google login works)<br>
+        2️⃣ Click <strong>New Project</strong> → give it a name → Create<br>
+        3️⃣ Go to <strong>SQL Editor</strong> → paste the SQL below → Run ▶<br>
+        4️⃣ Go to <strong>Settings → API</strong> → copy <strong>Project URL</strong> &amp; <strong>anon key</strong>
+      </div>
+      <div style="background:#0d0f2b;border-radius:10px;padding:12px 14px;font-size:.72rem;font-family:monospace;color:#3dd6e0;margin-bottom:18px;line-height:1.7;overflow-x:auto;cursor:pointer;position:relative" onclick="copySQL()" title="Click to copy SQL">
+        <div style="position:absolute;top:8px;right:10px;font-size:.68rem;color:rgba(61,214,224,.6);font-family:'Outfit',sans-serif">click to copy</div>
+        create table patients (<br>
+        &nbsp;&nbsp;id uuid default gen_random_uuid() primary key,<br>
+        &nbsp;&nbsp;token int, name text, age int, gender text,<br>
+        &nbsp;&nbsp;phone text, village text, symptoms text,<br>
+        &nbsp;&nbsp;priority text default 'normal',<br>
+        &nbsp;&nbsp;status text default 'waiting',<br>
+        &nbsp;&nbsp;prescription text default '[]',<br>
+        &nbsp;&nbsp;rx_sent bool default false,<br>
+        &nbsp;&nbsp;visit_date text,<br>
+        &nbsp;&nbsp;created_at timestamptz default now()<br>
+        );<br>
+        alter table patients enable row level security;<br>
+        create policy "allow all" on patients for all using (true);<br><br>
+        create table medical_prescriptions (<br>
+        &nbsp;&nbsp;id uuid default gen_random_uuid() primary key,<br>
+        &nbsp;&nbsp;token int, patient_name text, age int, gender text,<br>
+        &nbsp;&nbsp;phone text, village text, symptoms text,<br>
+        &nbsp;&nbsp;priority text, meds text default '[]',<br>
+        &nbsp;&nbsp;status text default 'pending',<br>
+        &nbsp;&nbsp;sent_to_phone bool default false,<br>
+        &nbsp;&nbsp;visit_date text,<br>
+        &nbsp;&nbsp;created_at timestamptz default now(),<br>
+        &nbsp;&nbsp;unique(token, visit_date)<br>
+        );<br>
+        alter table medical_prescriptions enable row level security;<br>
+        create policy "allow all" on medical_prescriptions for all using (true);
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
+        <div><label style="font-size:.68rem;font-weight:700;color:#3a7a8a;text-transform:uppercase;letter-spacing:.7px;display:block;margin-bottom:5px">Project URL</label>
+        <input id="si-url" type="text" placeholder="https://xxxxxxxxxxxx.supabase.co" style="width:100%;border:1.5px solid #b8dfe5;border-radius:9px;padding:10px 13px;font-size:.88rem;font-family:'Outfit',sans-serif;outline:none"></div>
+        <div><label style="font-size:.68rem;font-weight:700;color:#3a7a8a;text-transform:uppercase;letter-spacing:.7px;display:block;margin-bottom:5px">Anon/Public Key</label>
+        <input id="si-key" type="password" placeholder="eyJhbGciOiJIUzI1NiIsInR..." style="width:100%;border:1.5px solid #b8dfe5;border-radius:9px;padding:10px 13px;font-size:.88rem;font-family:'Outfit',sans-serif;outline:none"></div>
+      </div>
+      <button onclick="applySupaConfig()" style="width:100%;padding:13px;border:none;border-radius:11px;background:linear-gradient(135deg,#074060,#0fa3b1);color:#fff;font-weight:700;font-size:.95rem;cursor:pointer;font-family:'Outfit',sans-serif;box-shadow:0 4px 16px rgba(15,163,177,.35);letter-spacing:.02em">
+        ⚡ Connect to Supabase
+      </button>
+      <div style="font-size:.68rem;color:#7ab5c0;text-align:center;margin-top:10px">Your credentials are saved locally in this browser only</div>
+    </div>
+  </div>`;
+  m.style.display='block';
+  const saved=JSON.parse(localStorage.getItem('supa_config')||'{}');
+  if(saved.url) document.getElementById('si-url').value=saved.url;
+  if(saved.key) document.getElementById('si-key').value=saved.key;
+}
+
+function copySQL(){
+  const sql=`create table patients (id uuid default gen_random_uuid() primary key, token int, name text, age int, gender text, phone text, village text, symptoms text, priority text default 'normal', status text default 'waiting', prescription text default '[]', rx_sent bool default false, visit_date text, created_at timestamptz default now());
+alter table patients enable row level security;
+create policy "allow all" on patients for all using (true);
+
+create table medical_prescriptions (id uuid default gen_random_uuid() primary key, token int, patient_name text, age int, gender text, phone text, village text, symptoms text, priority text, meds text default '[]', status text default 'pending', sent_to_phone bool default false, visit_date text, created_at timestamptz default now(), unique(token, visit_date));
+alter table medical_prescriptions enable row level security;
+create policy "allow all" on medical_prescriptions for all using (true);`;
+  navigator.clipboard.writeText(sql).then(()=>showToast('SQL copied! Paste in Supabase SQL Editor ✅')).catch(()=>{});
+}
+
+async function applySupaConfig(){
+  const url=document.getElementById('si-url').value.trim().replace(/\/$/,'');
+  const key=document.getElementById('si-key').value.trim();
+  if(!url.includes('supabase.co')||key.length<20){showToast('Please enter valid URL and key',true);return;}
+  SUPA_URL=url; SUPA_KEY=key;
+  localStorage.setItem('supa_config',JSON.stringify({url,key}));
+  document.getElementById('supa-modal').style.display='none';
+  const fb=document.getElementById('supa-float-btn');if(fb)fb.remove();
+  showToast('⏳ Testing connection…');
+  // Test connection
+  const test=await supa('GET','patients',{filter:{'visit_date':'eq.'+todayStr()},select:'token',limit:'1'});
+  if(test!==null){
+    showDBStatus(true);
+    showToast('✅ Supabase connected!');
+    loadFromDB();
+  } else {
+    showDBStatus(false);
+    showToast('❌ Connection failed — check URL and key',true);
+  }
+}
+
+// ════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════
+
+let patients=[],currentTok=0,tokCounter=0,selPat=null;
+let curRole='reception',lang='te',isListening=false,recog=null,isSpeaking=false;
+const SS=window.speechSynthesis;
+let medPrescriptions=[];
+
+// Load saved MongoDB credentials from localStorage on startup
+(function(){
+  const saved = JSON.parse(localStorage.getItem('mongo_config') || '{}');
+  if (saved.appId && saved.apiKey) {
+    window.MONGO_APP_ID_LIVE  = saved.appId;
+    window.MONGO_API_KEY_LIVE = saved.apiKey;
+  }
+})();
+
+const CREDS={reception:'1234',doctor:'1234',nurse:'1234',admin:'1234'};
+let selRoleLogin='reception';
+
+const ROLE_TABS={
+  reception:['reception','ai','hall'],
+  doctor:['doctor'],
+  nurse:['medical'],
+  admin:['reception','doctor','ai','medical','hall']
+};
+const TAB_META={
+  reception:{icon:'🏥',label:'Reception'},
+  doctor:{icon:'👨‍⚕️',label:'Doctor Room'},
+  ai:{icon:'🤖',label:'AI Bot'},
+  medical:{icon:'💊',label:'Medical Room'},
+  hall:{icon:'📺',label:'Hall Display'}
+};
+
+// ════ LOGIN ════
+function selRole(r){
+  selRoleLogin=r;
+  document.querySelectorAll('.rc').forEach(c=>c.classList.remove('sel'));
+  document.getElementById('rc-'+r).classList.add('sel');
+  document.getElementById('l-user').value=r;
+}
+function doLogin(){
+  const p=document.getElementById('l-pass').value;
+  const err=document.getElementById('l-err');
+  if(CREDS[selRoleLogin]&&p===CREDS[selRoleLogin]){
+    err.classList.remove('show');
+    curRole=selRoleLogin;
+    document.getElementById('login-page').style.display='none';
+    document.getElementById('app').style.display='block';
+    buildNav();
+    const tabs=ROLE_TABS[curRole];
+    showView(tabs[0]);
+    document.getElementById('role-pill').textContent=TAB_META[curRole]?.label||curRole;
+    if(SS){SS.getVoices();SS.addEventListener('voiceschanged',()=>SS.getVoices());}
+    // Load today's data from Supabase
+    loadFromDB();
+  }else{err.classList.add('show');}
+}
+function doLogout(){
+  stopPolling(); // Stop sync when logged out
+  patients=[];medPrescriptions=[];currentTok=0;tokCounter=0;selPat=null;
+  document.getElementById('app').style.display='none';
+  document.getElementById('login-page').style.display='flex';
+  selRoleLogin='reception';
+  document.querySelectorAll('.rc').forEach(c=>c.classList.remove('sel'));
+  document.getElementById('rc-reception').classList.add('sel');
+}
+
+// ════ NAV ════
+function buildNav(){
+  const tabs=ROLE_TABS[curRole];
+  document.getElementById('nav-strip').innerHTML=tabs.map(t=>`<button class="nav-tab" id="nt-${t}" onclick="showView('${t}')">${TAB_META[t].icon} ${TAB_META[t].label}</button>`).join('');
+  // Show Delete All button only for reception and admin
+  setTimeout(()=>{
+    const eodBtn=document.getElementById('eod-btn');
+    if(eodBtn){
+      eodBtn.style.display=(curRole==='reception'||curRole==='admin')?'':'none';
+    }
+  },100);
+}
+function showView(v){
+  document.querySelectorAll('.view').forEach(e=>e.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(e=>e.classList.remove('active'));
+  document.getElementById('view-'+v)?.classList.add('active');
+  document.getElementById('nt-'+v)?.classList.add('active');
+  const showFoot=['reception','ai'].includes(v);
+  document.getElementById('hfoot').style.display=showFoot?'block':'none';
+  // Always sync fresh data from DB when switching tabs
+  if(supaConfigured()){
+    syncAllFromDB().catch(()=>{});
+  } else {
+    if(v==='doctor'){refreshDoc();}
+    if(v==='hall') updateHall();
+    if(v==='medical') renderMedRoom();
+  }
+}
+
+// ════ BELL ════
+const AC=window.AudioContext||window.webkitAudioContext;
+let ac=null;
+function playBell(){
+  try{
+    if(!ac) ac=new AC();
+    [[0,660,330],[.3,880,440],[.6,1100,550]].forEach(([d,f1,f2])=>{
+      const o=ac.createOscillator(),g=ac.createGain();
+      o.connect(g);g.connect(ac.destination);o.type='sine';
+      o.frequency.setValueAtTime(f1,ac.currentTime+d);
+      o.frequency.exponentialRampToValueAtTime(f2,ac.currentTime+d+.35);
+      g.gain.setValueAtTime(.5,ac.currentTime+d);
+      g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+d+.6);
+      o.start(ac.currentTime+d);o.stop(ac.currentTime+d+.7);
+    });
+    setTimeout(()=>{
+      [[0,523],[.4,392]].forEach(([d,f])=>{
+        const o=ac.createOscillator(),g=ac.createGain();
+        o.connect(g);g.connect(ac.destination);
+        o.type='triangle';o.frequency.value=f;
+        g.gain.setValueAtTime(.6,ac.currentTime+d);
+        g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+d+1.2);
+        o.start(ac.currentTime+d);o.stop(ac.currentTime+d+1.3);
+      });
+    },900);
+  }catch(e){}
+}
+
+// ════ TTS ════
+const numTe=['సున్న','ఒకటి','రెండు','మూడు','నాలుగు','అయిదు','ఆరు','ఏడు','ఎనిమిది','తొమ్మిది','పది','పదకొండు','పన్నెండు','పదమూడు','పదనాలుగు','పదిహేను','పదహారు','పదిహేడు','పదిహెనిమిది','పందొమ్మిది','ఇరవై'];
+function numToTe(n){return n>=0&&n<=20?numTe[n]:`${n}`;}
+
+function speakText(text){
+  if(!SS) return;
+  SS.cancel();
+  let clean=text.replace(/[\u{1F300}-\u{1FFFF}]/gu,'').replace(/[\u2600-\u27FF]/g,'').replace(/[*#_`•·]/g,'').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();
+  if(!clean) return;
+  const sents=clean.split(/[।\.!\?।\n]+/).map(s=>s.trim()).filter(s=>s.length>2);
+  const chunks=sents.length?sents:[clean];
+  let idx=0;
+  function next(){
+    if(idx>=chunks.length){stopSpkUI();return;}
+    const u=new SpeechSynthesisUtterance(chunks[idx]);
+    u.lang=lang==='te'?'te-IN':'en-IN';
+    u.rate=0.8;u.pitch=1.08;u.volume=1;
+    const voices=SS.getVoices();
+    const v=voices.find(v=>v.lang==='te-IN'&&v.name.toLowerCase().includes('google'))
+      ||voices.find(v=>v.lang==='te-IN')
+      ||voices.find(v=>v.lang.startsWith('te'))
+      ||voices.find(v=>v.lang==='en-IN')
+      ||voices.find(v=>v.name.toLowerCase().includes('india'));
+    if(v) u.voice=v;
+    u.onstart=()=>{if(idx===0) startSpkUI();}
+    u.onend=()=>{idx++;next();}
+    u.onerror=()=>{idx++;next();}
+    SS.speak(u);
+  }
+  next();
+}
+function startSpkUI(){
+  isSpeaking=true;
+  document.getElementById('r-icon').classList.add('spk');
+  document.getElementById('rdot').classList.add('spk-dot');
+  document.getElementById('vwave').classList.remove('idle');
+  document.getElementById('spkb').classList.add('on');
+  document.getElementById('vsbar').textContent='🔊 Speaking… | మాట్లాడుతున్నారు';
+  document.getElementById('vsbar').classList.add('spking');
+}
+function stopSpkUI(){
+  isSpeaking=false;
+  document.getElementById('r-icon').classList.remove('spk');
+  document.getElementById('rdot').classList.remove('spk-dot');
+  document.getElementById('vwave').classList.add('idle');
+  document.getElementById('spkb').classList.remove('on');
+  document.getElementById('vsbar').textContent='🔈 Voice reply ON — bot will speak in Telugu';
+  document.getElementById('vsbar').classList.remove('spking');
+}
+
+// ════ REGISTER ════
+async function regPatient(){
+  const name=document.getElementById('r-name').value.trim();
+  const age=document.getElementById('r-age').value;
+  const sym=document.getElementById('r-symptoms').value.trim();
+  if(!name||!age||!sym){showToast('Name, Age & Symptoms required',true);return;}
+
+  const pri=document.getElementById('r-priority').value;
+
+  // Get latest token count from DB to avoid duplicate tokens across devices
+  if(supaConfigured()){
+    const latest=await supa('GET','patients',{
+      filter:{'visit_date':'eq.'+todayStr()},
+      order:'token.desc', select:'token', limit:'1'
+    });
+    if(latest&&Array.isArray(latest)&&latest.length>0){
+      tokCounter=Math.max(tokCounter, latest[0].token);
+    }
+  }
+
+  tokCounter++;
+  const p={id:Date.now(),token:tokCounter,name,age,
+    gender:document.getElementById('r-gender').value,
+    phone:document.getElementById('r-phone').value.trim(),
+    village:document.getElementById('r-village').value.trim(),
+    symptoms:sym,priority:pri,
+    status:pri==='emergency'?'emergency':'waiting',
+    time:new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}),
+    prescription:[],rxSent:false};
+
+  // Save to Supabase FIRST, then sync all devices
+  const saved = await dbSavePatient(p);
+  if(saved){
+    console.log('✅ Patient saved to Supabase, token #'+tokCounter);
+    // Immediately sync all data from DB — this makes doctor device see it within 3 sec poll
+    await syncAllFromDB();
+  } else {
+    // Offline fallback — add locally
+    patients.push(p);
+  }
+
+  ['r-name','r-age','r-phone','r-village','r-symptoms'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('r-priority').value='normal';
+  updateNavTok();renderQueue();updateHall();
+  if(pri==='emergency') showEmergency(`🚨 ${name} (Token ${tokCounter}) — Emergency patient!`);
+  showToast(`Token #${tokCounter} issued to ${name} ✅`);
+}
+
+function renderQueue(){
+  const el=document.getElementById('queue-list');
+  const wc=patients.filter(p=>p.status==='waiting'||p.status==='emergency').length;
+  document.getElementById('wait-cnt').textContent=wc;
+  const nxt=patients.find(p=>p.status==='waiting'||p.status==='emergency');
+  document.getElementById('nxt-tok').textContent=nxt?nxt.token:'—';
+  if(!patients.length){el.innerHTML='<div style="color:var(--muted);text-align:center;padding:18px;font-size:.84rem">No patients registered yet ☝️</div>';return;}
+  el.innerHTML=patients.map(p=>`
+    <div class="qi">
+      <div class="qi-tok ${p.priority==='emergency'?'em':''}">${p.token}</div>
+      <div class="qi-info">
+        <div class="qi-name">${p.name||'—'} <span style="font-size:.7rem;color:var(--muted)">${p.gender||''}, ${p.age||''}yr</span></div>
+        <div class="qi-meta">${(p.symptoms||'').substring(0,52)}${(p.symptoms||'').length>52?'…':''}</div>
+        <div class="qi-meta">${p.time||''}${p.village?' · '+p.village:''}</div>
+      </div>
+      <div><div class="qb ${p.priority==='emergency'?'emergency':p.status==='done'?'done':'waiting'}">${p.priority==='emergency'?'🚨 Em':p.status==='done'?'✅ Done':'⏳'}</div></div>
+    </div>`).join('');
+}
+
+function resetQ(){
+  showConfirm('Reset Token Queue?',
+    'This resets the current queue for a new session. Records are cleared from database.',
+    async ()=>{
+      if(supaConfigured()){
+        await supa('DELETE','patients',{filter:{'visit_date':'eq.'+todayStr()}});
+        await supa('DELETE','medical_prescriptions',{filter:{'visit_date':'eq.'+todayStr()}});
+      }
+      _clearLocalData();
+      showToast('Queue reset ✅ Ready for new session');
+  });
+}
+
+function endOfDay(){
+  showConfirm(
+    '🗑️ Delete ALL Records?',
+    'Permanently deletes ALL patient records and prescriptions from today. Use at end of hospital day. Cannot be undone!',
+    async ()=>{
+      if(supaConfigured()){
+        try{
+          await supa('DELETE','patients',{filter:{'visit_date':'eq.'+todayStr()}});
+          await supa('DELETE','medical_prescriptions',{filter:{'visit_date':'eq.'+todayStr()}});
+          // Also clean yesterday in case of timezone overlap
+          const y=new Date(); y.setDate(y.getDate()-1);
+          const yd=y.getFullYear()+'-'+String(y.getMonth()+1).padStart(2,'0')+'-'+String(y.getDate()).padStart(2,'0');
+          await supa('DELETE','patients',{filter:{'visit_date':'eq.'+yd}});
+          await supa('DELETE','medical_prescriptions',{filter:{'visit_date':'eq.'+yd}});
+        }catch(e){ console.warn('Delete error:',e); }
+      }
+      _clearLocalData();
+      // Show success overlay
+      const overlay=document.createElement('div');
+      overlay.style.cssText='position:fixed;inset:0;background:rgba(2,31,43,.95);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;';
+      overlay.innerHTML=`
+        <div style="font-size:3.5rem">🏥</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:#3dd6e0;text-align:center">Day Complete!</div>
+        <div style="font-size:1rem;color:rgba(255,255,255,.75);text-align:center;font-family:'Noto Sans Telugu',sans-serif">ఈ రోజు పని పూర్తయింది</div>
+        <div style="font-size:.9rem;color:rgba(255,255,255,.5);text-align:center;max-width:320px">All patient records cleared from database.<br>Ready for tomorrow morning.</div>
+        <button onclick="this.parentElement.remove()" style="margin-top:8px;background:linear-gradient(135deg,#074060,#0fa3b1);color:#fff;border:none;border-radius:30px;padding:13px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;box-shadow:0 4px 18px rgba(15,163,177,.4)">✅ Done — Close</button>`;
+      document.body.appendChild(overlay);
+  });
+}
+
+function _clearLocalData(){
+  patients=[];currentTok=0;tokCounter=0;medPrescriptions=[];selPat=null;
+  ['cur-tok','doc-cur-tok'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent='0';});
+  ['nxt-tok'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent='—';});
+  ['wait-cnt','doc-wait-cnt'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent='0';});
+  updateNavTok();renderQueue();updateHall();
+  if(document.getElementById('view-doctor')?.classList.contains('active')) refreshDoc();
+  if(document.getElementById('view-medical')?.classList.contains('active')) renderMedRoom();
+}
+function updateNavTok(){document.getElementById('nav-tok').textContent=currentTok;}
+
+// ════ CALL NEXT (Doctor only) ════
+function callNext(){
+  const waiting=patients.filter(p=>p.status==='waiting'||p.status==='emergency');
+  if(!waiting.length){showToast('No patients waiting');return;}
+  const em=waiting.filter(p=>p.priority==='emergency');
+  const next=em.length?em[0]:waiting[0];
+  // Update status locally immediately
+  next.status='done';
+  currentTok=next.token;
+  selPat=next;
+  // Save to DB
+  dbUpdatePatientStatus(next.token,'done');
+  const ct=document.getElementById('cur-tok');
+  const dct=document.getElementById('doc-cur-tok');
+  if(ct) ct.textContent=currentTok;
+  if(dct) dct.textContent=currentTok;
+  updateNavTok();
+  const btn=document.getElementById('call-btn');
+  if(btn){btn.classList.add('ring');setTimeout(()=>btn.classList.remove('ring'),1000);}
+  playBell();
+  setTimeout(()=>{
+    const msg=`టోకెన్ నెంబర్ ${numToTe(currentTok)}, ${next.name}, దయచేసి లోపలికి రండి`;
+    speakText(msg);
+  },1300);
+  updateHall();renderQueue();refreshDoc();renderDetail();
+  showToast(`🔔 Calling Token #${currentTok} — ${next.name}`);
+}
+
+// ════ DOCTOR ════
+const isEmSym=s=>/chest|breath|heart|unconscious|seizure/i.test(s);
+
+function refreshDoc(){
+  document.getElementById('ds-total').textContent=patients.length;
+  document.getElementById('ds-wait').textContent=patients.filter(p=>p.status==='waiting').length;
+  document.getElementById('ds-done').textContent=patients.filter(p=>p.status==='done').length;
+  document.getElementById('ds-em').textContent=patients.filter(p=>p.priority==='emergency').length;
+  document.getElementById('doc-cur-tok').textContent=currentTok;
+  document.getElementById('doc-wait-cnt').textContent=patients.filter(p=>p.status==='waiting'||p.status==='emergency').length;
+  const el=document.getElementById('doc-list');
+  if(!patients.length){el.innerHTML='<div style="color:var(--muted);text-align:center;padding:16px">No patients yet</div>';return;}
+  el.innerHTML=patients.map((p,i)=>{
+    // Always use the most up-to-date status — if selPat matches, use its status
+    const liveStatus = (selPat && (selPat.id===p.id||selPat.token===p.token))
+      ? selPat.status : p.status;
+    const isSelected = selPat && (selPat.id===p.id||selPat.token===p.token);
+    const isDone = liveStatus==='done';
+    const isEm   = p.priority==='emergency';
+    return`<div class="qi" onclick="docSelIdx(${i})" style="${isSelected?'border-color:var(--e5);background:#fff;border-left:3px solid var(--e5);':''}">
+      <div class="qi-tok ${isEm?'em':''}">${p.token}</div>
+      <div class="qi-info">
+        <div class="qi-name">${p.name}</div>
+        <div class="qi-meta">${p.gender}, ${p.age}yr · ${p.village||'—'}</div>
+        <div class="qi-meta" style="margin-top:2px">${(p.symptoms||'').substring(0,44)}…</div>
+      </div>
+      <div><div class="qb ${isEm?'emergency':isDone?'done':'waiting'}">${isDone?'✅':isEm?'🚨':'⏳'}</div></div>
+    </div>`;
+  }).join('');
+}
+
+function docSel(id){selPat=patients.find(p=>p.id===id||p.id==id);renderDetail();refreshDoc();}
+function docSelIdx(idx){selPat=patients[idx];renderDetail();refreshDoc();}
+
+let rxType='medicine'; // current prescription type: medicine | injection | bloodtest | xray
+
+function setRxType(t){
+  rxType=t;
+  // Update button styles
+  ['medicine','injection','bloodtest','xray'].forEach(type=>{
+    const btn=document.getElementById('rxt-'+type);
+    if(btn){
+      btn.classList.toggle('active',type===t);
+    }
+  });
+  // Update placeholder based on type
+  const medIn=document.getElementById('rx-med');
+  const doseIn=document.getElementById('rx-dose');
+  const daysIn=document.getElementById('rx-days');
+  if(!medIn) return;
+  if(t==='medicine'){medIn.placeholder='Medicine name';if(doseIn)doseIn.style.display='';if(daysIn)daysIn.style.display='';}
+  else if(t==='injection'){medIn.placeholder='Injection name (e.g. Dolo 650 IV)';if(doseIn){doseIn.placeholder='Dose';doseIn.style.display='';}if(daysIn)daysIn.style.display='';}
+  else if(t==='bloodtest'){medIn.placeholder='Blood test name (e.g. CBC, Blood Sugar)';if(doseIn)doseIn.style.display='none';if(daysIn)daysIn.style.display='none';}
+  else if(t==='xray'){medIn.placeholder='X-Ray area (e.g. Chest X-Ray, Knee)';if(doseIn)doseIn.style.display='none';if(daysIn)daysIn.style.display='none';}
+}
+
+function renderDetail(){
+  if(!selPat) return;
+  const p=selPat;
+  const typeIcon={medicine:'💊',injection:'💉',bloodtest:'🩸',xray:'🔬'};
+  const typeBorder={medicine:'var(--e5)',injection:'var(--amber)',bloodtest:'var(--red)',xray:'#1a6fa8'};
+  const rxH=p.prescription&&p.prescription.length
+    ?p.prescription.map(r=>{
+      const icon=typeIcon[r.type||'medicine']||'💊';
+      const border=typeBorder[r.type||'medicine']||'var(--e5)';
+      const extra=r.type==='bloodtest'||r.type==='xray'?'':` <span style="color:var(--muted);font-size:.76rem">${r.dose||''} ${r.days?'· '+r.days:''}</span>`;
+      return`<div class="med-row-rx" style="border-left-color:${border}">${icon} <span style="font-weight:600;flex:1">${r.med}</span>${extra} <button onclick="rmRxByMed('${r.med.replace(/'/g,"\\'").replace(/\`/g,'\\`')}')" class="btn btn-red bsm" style="padding:3px 9px;margin-left:auto">✕</button></div>`;
+    }).join('')
+    :'<div style="color:var(--muted);font-size:.82rem;padding:8px 0">No items added yet</div>';
+  const sentBadge=p.rxSent?`<div class="rx-sent">✅ Sent to Medical Room</div>`:'';
+  document.getElementById('pat-detail').innerHTML=`
+    <div class="pa-header">
+      <div class="pa-avatar">${p.name[0].toUpperCase()}</div>
+      <div style="flex:1;min-width:0">
+        <div class="pa-name">${p.name}</div>
+        <div class="pa-meta">${p.gender}, ${p.age}yr · ${p.phone||'—'} · ${p.village||'—'}</div>
+        <div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:5px">
+          <span class="pill ${p.priority==='emergency'?'pr':p.status==='done'?'pe':'po'}">${p.priority==='emergency'?'🚨 Emergency':p.status==='done'?'✅ Seen':'⏳ Waiting'}</span>
+          <span class="pill pb">🎫 Token ${p.token}</span>
+          <span class="pill pe">🕒 ${p.time}</span>
+        </div>
+      </div>
+    </div>
+    <div style="margin-bottom:13px">
+      <div style="font-size:.64rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:7px">Chief Complaints</div>
+      <div class="stags">${p.symptoms.split(',').map(s=>`<span class="stag ${isEmSym(s)?'danger':''}">${s.trim()}</span>`).join('')}</div>
+      <div style="margin-top:8px;padding:11px;background:var(--cream);border-radius:9px;font-size:.84rem;line-height:1.7;border-left:3px solid var(--e5)">${p.symptoms}</div>
+    </div>
+    <div class="div"></div>
+    <div style="font-size:.64rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin:12px 0 8px">Prescription (Rx)</div>
+    <div id="rx-items">${rxH}</div>
+    ${sentBadge}
+
+    <!-- Type selector -->
+    <div style="font-size:.68rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin:12px 0 7px">Add Item</div>
+    <div class="rx-type-row">
+      <button id="rxt-medicine" class="rx-type-btn med active" onclick="setRxType('medicine')">💊 Medicine</button>
+      <button id="rxt-injection" class="rx-type-btn inj" onclick="setRxType('injection')">💉 Injection</button>
+      <button id="rxt-bloodtest" class="rx-type-btn blood" onclick="setRxType('bloodtest')">🩸 Blood Test</button>
+      <button id="rxt-xray" class="rx-type-btn xray" onclick="setRxType('xray')">🔬 X-Ray</button>
+    </div>
+    <div class="rx-input-row">
+      <input type="text" id="rx-med" class="rx-main" placeholder="Medicine name">
+      <input type="text" id="rx-dose" class="rx-dose" placeholder="Dose">
+      <input type="text" id="rx-days" class="rx-days" placeholder="Days">
+      <button class="btn btn-em" onclick="addRx()" style="white-space:nowrap">+ Add</button>
+    </div>
+
+    <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
+      <button class="btn btn-em" onclick="markDoneSel()">✅ Mark Seen</button>
+      <button class="btn btn-slate" onclick="sendMedRoomSel()">💊 Send to Medical Room</button>
+      <button class="btn btn-coral" onclick="printRxSel()">🖨️ Print Rx</button>
+    </div>`;
+
+  // Re-apply current type state
+  setRxType(rxType);
+}
+
+function addRx(){
+  if(!selPat){showToast('Select a patient first',true);return;}
+  const medIn=document.getElementById('rx-med');
+  const doseIn=document.getElementById('rx-dose');
+  const daysIn=document.getElementById('rx-days');
+  const med=medIn?medIn.value.trim():'';
+  if(!med){showToast('Enter item name',true);return;}
+  // Smart defaults per type
+  let dose='',days='';
+  if(rxType==='medicine'){
+    dose=doseIn&&doseIn.value.trim()||'1 tablet';
+    days=daysIn&&daysIn.value.trim()||'3 days';
+  } else if(rxType==='injection'){
+    dose=doseIn&&doseIn.value.trim()||'1 dose';
+    days=daysIn&&daysIn.value.trim()||'As advised';
+  } else if(rxType==='bloodtest'){
+    dose=''; days='Fasting sample preferred';
+  } else if(rxType==='xray'){
+    dose=''; days='Report within 24 hours';
+  }
+  selPat.prescription.push({med, dose, days, type:rxType});
+  // CRITICAL: also update the same patient object in patients[] array
+  const pInList = patients.find(x=>x.id===selPat.id||x.token===selPat.token);
+  if(pInList) pInList.prescription = [...selPat.prescription];
+  if(medIn) medIn.value='';
+  if(doseIn) doseIn.value='';
+  if(daysIn) daysIn.value='';
+  renderDetail();
+  showToast(`${rxType==='medicine'?'💊':rxType==='injection'?'💉':rxType==='bloodtest'?'🩸':'🔬'} ${med} added`);
+}
+function rmRx(m,pid){
+  const p=patients.find(x=>x.id===pid);if(!p)return;
+  p.prescription=p.prescription.filter(r=>r.med!==m);if(selPat&&selPat.id===pid)renderDetail();
+}
+function markDone(id){
+  // Find patient by id or by token via selPat
+  let p = patients.find(x=>x.id===id||x.id==id);
+  if(!p && selPat) p = patients.find(x=>x.token===selPat.token);
+  if(!p && selPat){ p = selPat; } // fallback to selPat itself
+  if(!p){showToast('Patient not found',true);return;}
+  // Update status everywhere immediately
+  p.status='done';
+  if(selPat && (selPat.id===p.id||selPat.token===p.token)){
+    selPat.status='done';
+    selPat=p;
+  }
+  // Update in patients[] array by token (most reliable key)
+  patients.forEach(x=>{ if(x.token===p.token) x.status='done'; });
+  // Save to DB
+  dbUpdatePatientStatus(p.token,'done').then(()=>{
+    if(supaConfigured()) syncAllFromDB();
+  });
+  renderQueue();refreshDoc();renderDetail();
+  showToast(`✅ ${p.name} marked as seen`);
+}
+// Mobile-safe: act on currently selected patient
+function markDoneSel(){
+  if(!selPat){showToast('No patient selected',true);return;}
+  markDone(selPat.id);
+}
+function sendMedRoomSel(){
+  if(!selPat){showToast('No patient selected',true);return;}
+  if(!selPat.prescription||selPat.prescription.length===0){
+    showToast('Please add at least one item to prescription first',true);
+    return;
+  }
+  sendMedRoom(selPat.id);
+}
+function printRxSel(){
+  if(!selPat){showToast('No patient selected',true);return;}
+  printRxInline(selPat.id);
+}
+function rmRxByMed(medName){
+  if(!selPat){return;}
+  selPat.prescription=selPat.prescription.filter(r=>r.med!==medName);
+  const p=patients.find(x=>x.id===selPat.id||x.token===selPat.token);
+  if(p) p.prescription=[...selPat.prescription];
+  renderDetail();
+}
+
+// ════ MEDICAL ROOM ════
+function sendMedRoom(id){
+  // Always use selPat directly — it has the latest prescription added by doctor
+  // patients[] from DB may have stale/empty prescription if not yet saved
+  const p = selPat || patients.find(x=>x.id===id||x.id==id||String(x.id)===String(id));
+  if(!p){showToast('Patient not found',true);return;}
+
+  // Check prescription from selPat first (most up to date), then fallback to found patient
+  const rx = (selPat && selPat.prescription && selPat.prescription.length > 0)
+    ? selPat.prescription
+    : (p.prescription || []);
+
+  if(!rx || rx.length === 0){
+    showToast('Please add at least one medicine, injection, blood test or X-ray first',true);
+    return;
+  }
+
+  // Sync prescription to patient record
+  p.prescription = rx;
+  if(selPat) selPat.prescription = rx;
+
+  // Also update in patients[] array
+  const pIdx = patients.findIndex(x=>x.id===p.id||x.token===p.token);
+  if(pIdx>=0) patients[pIdx].prescription = rx;
+
+  const entry={
+    patientId:   p.id,
+    token:       p.token,
+    name:        p.name || p.patient_name || '—',
+    patient_name:p.name || p.patient_name || '—',
+    age:         p.age,
+    gender:      p.gender || '',
+    phone:       p.phone || '',
+    village:     p.village || '',
+    symptoms:    p.symptoms || '',
+    meds:        [...rx],
+    status:      'pending',
+    time:        new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}),
+    priority:    p.priority || 'normal',
+    sentToPhone: false
+  };
+
+  const idx=medPrescriptions.findIndex(m=>m.patientId===p.id||m.token===p.token);
+  if(idx>=0) medPrescriptions[idx]=entry; else medPrescriptions.push(entry);
+  p.rxSent=true;
+  if(selPat) selPat.rxSent=true;
+
+  // Save to Supabase
+  Promise.all([dbSavePrescription(p), dbSendToMedRoom(entry)]).then(()=>{
+    if(supaConfigured()) syncAllFromDB();
+  });
+
+  renderDetail();renderMedRoom();
+  showToast(`💊 Rx sent to Medical Room for ${p.name}`);
+}
+
+function renderMedRoom(){
+  document.getElementById('ms-pending').textContent=medPrescriptions.filter(m=>m.status==='pending').length;
+  document.getElementById('ms-ready').textContent=medPrescriptions.filter(m=>m.status==='ready').length;
+  document.getElementById('ms-given').textContent=medPrescriptions.filter(m=>m.status==='given').length;
+  const el=document.getElementById('med-grid');
+  if(!medPrescriptions.length){
+    el.innerHTML='<div style="color:var(--muted);text-align:center;padding:48px;grid-column:1/-1;background:#fff;border-radius:16px;border:1.5px dashed var(--border)"><div style="font-size:2.5rem;margin-bottom:12px">💊</div>No prescriptions yet.<br><span style="font-size:.82rem">Prescriptions from the doctor will appear here.</span></div>';
+    return;
+  }
+  const sorted=[...medPrescriptions].sort((a,b)=>{const o={pending:0,ready:1,given:2};const ep=x=>x.priority==='emergency'?-1:o[x.status]||0;return ep(a)-ep(b);});
+  el.innerHTML=sorted.map(m=>{
+    const isN=m.status==='pending',isE=m.priority==='emergency';
+    const mrows=m.meds.map(r=>`<div class="m-row ${isE?'urg':''}">💊 <span class="mn">${r.med}</span><span class="md">${r.dose} · ${r.days}</span></div>`).join('');
+    const spClass=m.status==='pending'?'sp-pend':m.status==='ready'?'sp-ready':'sp-given';
+    const spLabel=m.status==='pending'?'⏳ Pending':m.status==='ready'?'✅ Ready':'💚 Given';
+    const hasPhone=m.phone&&m.phone.trim().length>6;
+    // Show send-to-phone buttons only after medicines are Given
+    const sendBtns=m.status==='given'?(hasPhone?`
+      <button class="ma-btn whatsapp" onclick="sendWhatsApp('${m.patientId}')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Send via WhatsApp
+      </button>
+      <button class="ma-btn sms" onclick="sendSMS('${m.patientId}')">📱 Send via SMS</button>`
+      :`<div style="font-size:.72rem;color:var(--muted);padding:4px 0">📵 No phone number registered — cannot send</div>`):'';
+    return`<div class="rx-card ${isN?'new-ring':''}">
+      <div class="rx-card-top ${isE?'urg':''}">
+        <div>
+          <div class="rx-pname">${isE?'🚨 ':''}${m.name||m.patient_name||'—'} <span class="stat-pill ${spClass}">${spLabel}</span></div>
+          <div class="rx-pmeta">${m.gender||'—'}, ${m.age||'—'}yr · 📱 ${m.phone||'No phone'} · ${m.village||'—'} · 🕒 ${m.time||'—'}</div>
+        </div>
+        <div class="rx-tok ${isE?'urg':''}">${m.token}</div>
+      </div>
+      <div class="rx-body">
+        <div style="font-size:.68rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Complaints: <span style="color:var(--text);text-transform:none;font-weight:400">${m.symptoms}</span></div>
+        ${mrows}
+        <div class="ma-btns">
+          ${m.status==='pending'?`<button class="ma-btn ready" onclick="updMed('${m.patientId}','ready')">✅ Mark Ready</button>`:''}
+          ${m.status==='ready'?`<button class="ma-btn given" onclick="updMed('${m.patientId}','given')">💚 Mark Medicines Given</button>`:''}
+          ${sendBtns}
+          ${m.status==='given'&&m.sentToPhone?`<div class="send-success-tag">✅ Sent to patient</div>`:''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+function updMed(pid,status){
+  const m=medPrescriptions.find(x=>x.patientId==pid||x.token==pid);
+  if(m){
+    m.status=status;
+    dbUpdateMedStatus(m.token,status);
+    renderMedRoom();showToast(status==='ready'?'Medicines ready ✅':'Medicines given to patient 💚');
+  }
+}
+
+// ════ SEND PRESCRIPTION TO PATIENT'S PHONE ════
+function buildRxText(m){
+  const date=new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'long',year:'numeric'});
+  const medList=m.meds.map((r,i)=>`${i+1}. ${r.med} — ${r.dose} for ${r.days}`).join('\n');
+  return `✚ *Praja Vaidyasala Prescription*
+ప్రజా వైద్యశాల, అడ్డంకి
+📞 085932 23404
+
+📋 *Patient:* ${m.name||m.patient_name||'—'}
+🎫 *Token:* #${m.token}  |  📅 *Date:* ${date}
+👤 *Age/Gender:* ${m.age}yr / ${m.gender}
+🏘️ *Village:* ${m.village||'—'}
+
+🩺 *Chief Complaints:*
+${m.symptoms}
+
+💊 *Medicines Prescribed:*
+${medList}
+
+📌 *General Advice:*
+• బాగా నీళ్ళు తాగండి (Drink plenty of water)
+• విశ్రాంతి తీసుకోండి (Take complete rest)
+• మందులు పూర్తిగా వేసుకోండి (Complete full course)
+• లక్షణాలు తగ్గకపోతే వెంటనే చూపించండి
+
+_This prescription was issued at Praja Vaidyasala, Addanki, AP 523201_`;
+}
+
+function sendWhatsApp(pid){
+  const m=medPrescriptions.find(x=>x.patientId==pid);
+  if(!m){showToast('Prescription not found',true);return;}
+  if(!m.phone||m.phone.trim().length<6){showToast('No phone number for this patient',true);return;}
+  const text=buildRxText(m);
+  // Format phone: remove spaces, add India country code if needed
+  let phone=m.phone.replace(/\s+/g,'').replace(/^0/,'').replace(/^\+/,'');
+  if(!phone.startsWith('91')) phone='91'+phone;
+  const url=`https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+  window.open(url,'_blank');
+  m.sentToPhone=true;
+  dbUpdateMedStatus(m.token,m.status,true);
+  renderMedRoom();
+  showToast(`📲 WhatsApp opened for ${m.name||m.patient_name||'patient'}`);
+}
+
+function sendSMS(pid){
+  const m=medPrescriptions.find(x=>x.patientId==pid);
+  if(!m){showToast('Prescription not found',true);return;}
+  if(!m.phone||m.phone.trim().length<6){showToast('No phone number for this patient',true);return;}
+  const date=new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+  const medList=m.meds.map((r,i)=>`${i+1}. ${r.med} - ${r.dose} for ${r.days}`).join('\n');
+  const text=`Praja Vaidyasala, Addanki\nToken #${m.token} | ${date}\nPatient: ${m.name}\nPhone: ${m.phone}\n\nMedicines:\n${medList}\n\nAdvice: Drink water, rest well, complete full course.\nCall: 085932 23404`;
+  let phone=m.phone.replace(/\s+/g,'');
+  // Try native SMS first (works on mobile), then show copy modal as fallback
+  const smsUrl=`sms:${phone}?body=${encodeURIComponent(text)}`;
+  // Show the SMS modal with copy option — works on all devices
+  showSMSModal(m.name||m.patient_name||'Patient', phone, text, smsUrl);
+  m.sentToPhone=true;
+  setTimeout(()=>renderMedRoom(),100);
+}
+
+// ════ CUSTOM CONFIRM MODAL ════
+function showConfirm(title, subtitle, onConfirm){
+  let modal=document.getElementById('confirm-modal');
+  if(!modal){
+    modal=document.createElement('div');
+    modal.id='confirm-modal';
+    document.body.appendChild(modal);
+  }
+  modal.innerHTML=`
+    <div id="confirm-backdrop" onclick="closeConfirm()" style="position:fixed;inset:0;background:rgba(2,31,43,.55);z-index:99990;backdrop-filter:blur(4px);animation:fadeIn .2s ease"></div>
+    <div id="confirm-box" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:99991;background:#fff;border-radius:20px;padding:32px 36px;max-width:420px;width:90%;box-shadow:0 30px 80px rgba(0,0,0,.25);animation:boxIn .3s cubic-bezier(.34,1.56,.64,1)">
+      <div style="font-size:2rem;margin-bottom:12px">🔄</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:#021f2b;margin-bottom:8px">${title}</div>
+      <div style="font-size:.86rem;color:#3a7a8a;margin-bottom:24px;line-height:1.6">${subtitle}</div>
+      <div style="display:flex;gap:10px;justify-content:flex-end">
+        <button onclick="closeConfirm()" style="padding:10px 22px;border:1.5px solid #b8dfe5;border-radius:10px;background:#f0f8fa;color:#052e40;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;font-size:.88rem;transition:all .2s" onmouseover="this.style.background='#d0edf1'" onmouseout="this.style.background='#f0f8fa'">Cancel</button>
+        <button onclick="confirmAction()" style="padding:10px 22px;border:none;border-radius:10px;background:linear-gradient(135deg,#d63031,#e74c3c);color:#fff;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;font-size:.88rem;box-shadow:0 4px 14px rgba(214,48,49,.3);transition:all .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Yes, Reset</button>
+      </div>
+    </div>`;
+  modal.style.display='block';
+  window._confirmCallback=onConfirm;
+}
+function confirmAction(){
+  if(window._confirmCallback) window._confirmCallback();
+  closeConfirm();
+}
+function closeConfirm(){
+  const m=document.getElementById('confirm-modal');
+  if(m) m.style.display='none';
+}
+
+// ════ SMS MODAL (works on desktop + mobile) ════
+function showSMSModal(name, phone, text, smsUrl){
+  let modal=document.getElementById('sms-modal');
+  if(!modal){modal=document.createElement('div');modal.id='sms-modal';document.body.appendChild(modal);}
+  modal.innerHTML=`
+    <div onclick="closeSMSModal()" style="position:fixed;inset:0;background:rgba(2,31,43,.55);z-index:99990;backdrop-filter:blur(4px);animation:fadeIn .2s ease"></div>
+    <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:99991;background:#fff;border-radius:20px;padding:0;max-width:500px;width:92%;box-shadow:0 30px 80px rgba(0,0,0,.25);animation:boxIn .3s cubic-bezier(.34,1.56,.64,1);overflow:hidden">
+      <div style="background:linear-gradient(135deg,#052e40,#0a6080);padding:20px 24px;display:flex;align-items:center;justify-content:space-between">
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:#fff">📱 Send Prescription</div>
+          <div style="font-size:.76rem;color:rgba(255,255,255,.7);margin-top:2px">To: ${name} · ${phone}</div>
+        </div>
+        <button onclick="closeSMSModal()" style="background:rgba(255,255,255,.15);border:none;color:#fff;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center">✕</button>
+      </div>
+      <div style="padding:20px 24px">
+        <div style="font-size:.72rem;font-weight:700;color:#3a7a8a;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px">Message Preview</div>
+        <div id="sms-preview" style="background:#f0f8fa;border-radius:10px;padding:13px 15px;font-size:.78rem;line-height:1.8;color:#021f2b;white-space:pre-wrap;border:1px solid #b8dfe5;max-height:200px;overflow-y:auto;font-family:'Outfit',sans-serif">${text.replace(/</g,'&lt;')}</div>
+        <div style="margin-top:16px;display:flex;flex-direction:column;gap:10px">
+          <a href="${smsUrl}" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;background:linear-gradient(135deg,#052e40,#0a6080);color:#fff;text-decoration:none;border-radius:10px;font-weight:700;font-size:.9rem;box-shadow:0 4px 14px rgba(5,46,64,.3);transition:all .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+            📱 Open SMS App on Mobile
+          </a>
+          <button onclick="copySMSText()" id="copy-sms-btn" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:11px;background:#fff;color:#052e40;border:1.5px solid #b8dfe5;border-radius:10px;font-weight:600;font-size:.88rem;cursor:pointer;transition:all .2s;font-family:'Outfit',sans-serif" onmouseover="this.style.background='#f0f8fa'" onmouseout="this.style.background='#fff'">
+            📋 Copy Message Text
+          </button>
+          <div style="font-size:.72rem;color:#7ab5c0;text-align:center;line-height:1.5">On desktop: Copy the message above and paste it into your SMS or messaging app manually. On mobile phones: tap "Open SMS App" to send directly.</div>
+        </div>
+      </div>
+    </div>`;
+  modal.style.display='block';
+  window._smsText=text;
+}
+function closeSMSModal(){
+  const m=document.getElementById('sms-modal');
+  if(m) m.style.display='none';
+}
+function copySMSText(){
+  if(!window._smsText) return;
+  navigator.clipboard.writeText(window._smsText).then(()=>{
+    const btn=document.getElementById('copy-sms-btn');
+    if(btn){btn.textContent='✅ Copied!';btn.style.background='rgba(15,163,177,.1)';btn.style.color='#0a6080';btn.style.borderColor='rgba(15,163,177,.3)';}
+    showToast('Message copied — paste into SMS app 📋');
+  }).catch(()=>{
+    // Fallback for older browsers
+    const ta=document.createElement('textarea');
+    ta.value=window._smsText;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('Message copied — paste into SMS app 📋');
+  });
+}
+function buildRxHTML(p,meds){
+  const date=new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'long',year:'numeric'});
+  const rxRows=meds&&meds.length
+    ?meds.map((r,i)=>`<tr><td style="padding:9px 12px;border-bottom:1px solid #d0edf1">${i+1}</td><td style="padding:9px 12px;border-bottom:1px solid #d0edf1;font-weight:600;color:#052e40">${r.med}</td><td style="padding:9px 12px;border-bottom:1px solid #d0edf1;color:#3a7a8a">${r.dose}</td><td style="padding:9px 12px;border-bottom:1px solid #d0edf1;color:#3a7a8a">${r.days}</td></tr>`).join('')
+    :'<tr><td colspan="4" style="padding:14px;color:#999;text-align:center">No medicines prescribed</td></tr>';
+  return`<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@400;600;700&family=Noto+Sans+Telugu:wght@400;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;background:#fff;color:#021f2b;padding:0}
+.w{max-width:660px;margin:0 auto;border:1px solid #b8dfe5;border-radius:14px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.07)}
+.hd{background:linear-gradient(135deg,#052e40,#0a6080);color:#fff;padding:18px 26px;display:flex;justify-content:space-between;align-items:flex-start}
+.cn{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;letter-spacing:-.01em}
+.cte{font-family:'Noto Sans Telugu',sans-serif;font-size:.82rem;opacity:.8;margin-top:2px}
+.ca{font-size:.72rem;opacity:.65;margin-top:3px;line-height:1.5}
+.rxsym{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:700;font-style:italic;color:#052e40;padding:14px 26px;border-bottom:1px solid #b8dfe5}
+.pb{padding:14px 26px;background:#f0f8fa;border-bottom:1px solid #b8dfe5;display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.ii label{font-size:.62rem;text-transform:uppercase;letter-spacing:.6px;color:#3a7a8a;font-weight:700}
+.ii p{font-size:.9rem;font-weight:600;margin-top:2px;color:#021f2b}
+.sb{padding:12px 26px;background:#f4fafb;border-bottom:1px solid #b8dfe5}
+.sb label{font-size:.62rem;text-transform:uppercase;letter-spacing:.6px;color:#3a7a8a;font-weight:700}
+.sb p{font-size:.85rem;margin-top:3px;line-height:1.6;color:#052e40}
+.rw{padding:14px 26px}
+.rw h3{font-size:.72rem;text-transform:uppercase;letter-spacing:.8px;color:#052e40;margin-bottom:10px;font-weight:700}
+table{width:100%;border-collapse:collapse;border:1px solid #b8dfe5;border-radius:8px;overflow:hidden}
+thead{background:#d0edf1}
+th{padding:9px 12px;text-align:left;font-size:.68rem;text-transform:uppercase;letter-spacing:.4px;color:#052e40;font-weight:700}
+.rf{display:grid;grid-template-columns:1fr 1fr;padding:16px 26px;border-top:1px solid #b8dfe5;gap:16px}
+.adv{font-size:.76rem;color:#3a7a8a;line-height:1.8}
+.adv h4{font-size:.66rem;text-transform:uppercase;letter-spacing:.5px;color:#052e40;margin-bottom:5px;font-weight:700}
+.sig{text-align:right;padding-top:28px;border-top:1.5px solid #021f2b;font-size:.74rem;color:#3a7a8a}
+.sig .dr{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:.95rem;color:#021f2b}
+.btm{background:#021f2b;color:rgba(255,255,255,.45);text-align:center;padding:9px;font-size:.68rem}
+</style>
+<div class="w">
+<div class="hd">
+  <div><div class="cn">✚ Praja Vaidyasala</div><div class="cte">ప్రజా వైద్యశాల</div><div class="ca">RX7C+C95, Indira Nagar, Addanki, AP 523201 · 085932 23404</div></div>
+  <div style="background:rgba(255,255,255,.15);border-radius:8px;padding:6px 12px;font-size:.74rem;text-align:right"><div>Date: ${date}</div><div style="margin-top:2px">Token #${p.token}</div></div>
+</div>
+<div class="rxsym">℞</div>
+<div class="pb">
+  <div class="ii"><label>Patient Name</label><p>${p.name}</p></div>
+  <div class="ii"><label>Age / Gender</label><p>${p.age} yrs / ${p.gender}</p></div>
+  <div class="ii"><label>Phone</label><p>${p.phone||'—'}</p></div>
+  <div class="ii"><label>Village / Area</label><p>${p.village||'—'}</p></div>
+</div>
+<div class="sb"><label>Chief Complaints</label><p>${p.symptoms}</p></div>
+<div class="rw"><h3>Prescribed Medicines</h3>
+<table><thead><tr><th>#</th><th>Medicine</th><th>Dose</th><th>Duration</th></tr></thead><tbody>${rxRows}</tbody></table></div>
+<div class="rf">
+  <div class="adv"><h4>General Advice</h4>• Drink 8-10 glasses of water daily<br>• Take complete rest<br>• Eat light, nutritious food<br>• Complete the full medicine course<br>• Return if symptoms worsen</div>
+  <div><div class="sig"><div class="dr">Doctor's Signature</div><div style="margin-top:4px">Praja Vaidyasala, Addanki</div></div></div>
+</div>
+<div class="btm">Computer-generated prescription — Praja Vaidyasala, Addanki. Valid for 3 days from date of issue.</div>
+</div>`;
+}
+
+function printRxInline(id){
+  const p=patients.find(x=>x.id==id||String(x.id)===String(id));
+  if(!p){showToast('Patient not found',true);return;}
+  if(!p.prescription||!p.prescription.length){showToast('No medicines to print',true);return;}
+  let pd=document.getElementById('rx-print-div');
+  if(!pd){pd=document.createElement('div');pd.id='rx-print-div';document.body.appendChild(pd);}
+  pd.innerHTML=buildRxHTML(p,p.prescription);
+  pd.style.cssText='position:fixed;inset:0;background:white;z-index:99999;overflow:auto;padding:24px';
+  const bar=document.createElement('div');
+  bar.style.cssText='position:sticky;top:0;background:white;padding:12px 0 16px;display:flex;gap:10px;border-bottom:1px solid #b8dfe5;margin-bottom:16px;z-index:1';
+  bar.innerHTML=`
+    <button onclick="window.print()" style="padding:10px 22px;background:linear-gradient(135deg,#052e40,#0a6080);color:white;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-size:.9rem;font-family:'Outfit',sans-serif">🖨️ Print Prescription</button>
+    <button onclick="document.getElementById('rx-print-div').remove()" style="padding:10px 20px;background:#f0f8fa;color:#052e40;border:1.5px solid #b8dfe5;border-radius:10px;font-weight:600;cursor:pointer;font-size:.9rem;font-family:'Outfit',sans-serif">✕ Close</button>`;
+  pd.prepend(bar);
+  showToast('Prescription ready — click Print 🖨️');
+}
+function printMedRx(pid){
+  const m=medPrescriptions.find(x=>x.patientId==pid);if(!m) return;
+  const p={id:pid,token:m.token,name:m.name||m.patient_name||'—',age:m.age,gender:m.gender||'',phone:m.phone||'',village:m.village||'',symptoms:m.symptoms||'',prescription:m.meds};
+  let pd=document.getElementById('rx-print-div');
+  if(!pd){pd=document.createElement('div');pd.id='rx-print-div';document.body.appendChild(pd);}
+  pd.innerHTML=buildRxHTML(p,m.meds);
+  pd.style.cssText='position:fixed;inset:0;background:white;z-index:99999;overflow:auto;padding:24px';
+  const bar=document.createElement('div');
+  bar.style.cssText='position:sticky;top:0;background:white;padding:12px 0 16px;display:flex;gap:10px;border-bottom:1px solid #b8dfe5;margin-bottom:16px;z-index:1';
+  bar.innerHTML=`<button onclick="window.print()" style="padding:10px 22px;background:linear-gradient(135deg,#052e40,#0a6080);color:white;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-size:.9rem;font-family:'Outfit',sans-serif">🖨️ Print</button><button onclick="document.getElementById('rx-print-div').remove()" style="padding:10px 20px;background:#f0f8fa;color:#052e40;border:1.5px solid #b8dfe5;border-radius:10px;font-weight:600;cursor:pointer;font-size:.9rem;font-family:'Outfit',sans-serif">✕ Close</button>`;
+  pd.prepend(bar);
+}
+
+// ════ AI BOT ════
+function setLang(l){
+  lang=l;
+  document.getElementById('btn-te').classList.toggle('active',l==='te');
+  document.getElementById('btn-en').classList.toggle('active',l==='en');
+}
+
+// Comprehensive, natural Telugu responses for offline fallback
+const TE={
+  fever:'జ్వరం వచ్చినప్పుడు బాగా నీళ్ళు తాగండి, రోజుకు పది గ్లాసులు. పూర్తిగా విశ్రాంతి తీసుకోండి. తులసి కషాయం తాగితే మంచిది. Paracetamol వేసుకోవచ్చు. రెండు రోజులు తగ్గకపోతే వెంటనే డాక్టర్ గారిని చూడండి.',
+  cough:'దగ్గు తగ్గడానికి పాలలో పసుపు వేసి తాగండి. అల్లం రసంలో తేనె కలిపి తీసుకోండి. ఆవిరి పట్టడం బాగా పనిచేస్తుంది. వేడి నీళ్ళు తాగండి. ఒక వారం తగ్గకపోతే డాక్టర్ దగ్గరకు వెళ్ళండి.',
+  stomach:'కడుపు నొప్పికి ORS సాషే తాగండి. తేలికపాటి ఆహారం తినండి, అంటే అన్నం, పప్పు. ఓమం నీళ్ళు తాగండి. కారమైన ఆహారం తినకండి. వాంతులు లేదా విరేచనాలు ఉంటే వెంటనే డాక్టర్ చూపించుకోండి.',
+  headache:'తలనొప్పికి విశ్రాంతి తీసుకోండి. నీళ్ళు తాగండి. నుదుటిపై చల్లటి గుడ్డ పెట్టండి. మొబైల్ ఫోన్ చాలాసేపు చూడకండి. తరచుగా వస్తే డాక్టర్ గారిని తప్పకుండా చూడండి.',
+  chest:'ఛాతీ నొప్పి చాలా ప్రమాదకరమైన లక్షణం. వెంటనే Reception దగ్గర చెప్పండి. డాక్టర్ గారిని ఇప్పుడే చూడాలి. అవసరమైతే 108 కి కాల్ చేయండి. దయచేసి ఆలస్యం చేయకండి.',
+  bp:'రక్తపోటు నియంత్రణకు ఉప్పు తక్కువగా తినండి. రెగ్యులర్ గా నడవండి. మందులు సమయానికి వేసుకోండి. ఒత్తిడి తగ్గించుకోండి. రోజూ BP చెక్ చేసుకోండి. డాక్టర్ గారి సలహా లేకుండా మందులు మానుకోకండి.',
+  diabetes:'మధుమేహం నియంత్రణకు తీపి పదార్థాలు తినకండి. నిత్యం వ్యాయామం చేయండి. మందులు సమయానికి వేసుకోండి. రోజూ blood sugar చెక్ చేసుకోండి. కాళ్ళ పాదాలు జాగ్రత్తగా చూసుకోండి. పంది మాంసం, ఆల్కహాల్ వద్దు.',
+  back:'వీపు నొప్పికి మెత్తటి మంచంపై పడుకోవద్దు. నిటారుగా కూర్చోండి. వేడి నీళ్ళ బాటిల్ తో శేకం ఇవ్వండి. ఎక్కువ బరువులు ఎత్తకండి. నొప్పి 3 రోజులు తగ్గకపోతే డాక్టర్ చూడండి.',
+  skin:'చర్మ సమస్యలకు ప్రభావిత ప్రాంతాన్ని శుభ్రంగా ఉంచండి. నీళ్ళు బాగా తాగండి. సూర్యకాంతి నుండి రక్షణ కోసం గొడుగు వాడండి. సబ్బు మార్చండి. 1 వారం తగ్గకపోతే డాక్టర్ దగ్గరకు వెళ్ళండి.',
+  eye:'కళ్ళు ఎర్రగా ఉంటే చల్లటి నీళ్ళతో కడగండి. కళ్ళు నలపకండి. మొబైల్ తక్కువగా చూడండి. వేకువన కళ్ళు కడగడం అలవాటు చేసుకోండి. 2 రోజులు తగ్గకపోతే వెంటనే డాక్టర్ దగ్గరకు వెళ్ళండి.',
+  ear:'చెవి నొప్పికి వెచ్చటి నూనె చుక్కలు వేసుకోండి. చెవిలో నీళ్ళు పడకుండా జాగ్రత్తపడండి. చెవి గోకకండి. జ్వరం కూడా ఉంటే వెంటనే డాక్టర్ చూపించుకోండి.',
+  teeth:'పళ్ళ నొప్పికి వెచ్చటి నీళ్ళలో ఉప్పు వేసి పుక్కిలించండి. Clove oil పళ్ళ నొప్పికి తాత్కాలిక ఉపశమనం ఇస్తుంది. Cold పానీయాలు తాగకండి. వెంటనే dentist దగ్గరకు వెళ్ళండి.',
+  sleep:'నిద్ర సమస్యలకు రాత్రి 10 గంటల తర్వాత మొబైల్ వాడకండి. నిద్రకు ముందు గోరువెచ్చటి పాలు తాగండి. గది చీకటిగా ఉండాలి. రోజూ ఒకే సమయానికి నిద్రపోండి.',
+  doctor:`డాక్టర్ గారు ఇప్పుడు available గా ఉన్నారు. ప్రస్తుత టోకెన్ నెంబర్ ${currentTok}. మీ వంతు వచ్చినప్పుడు పిలుస్తారు. దయచేసి వేచి ఉండండి.`,
+  token:`ప్రస్తుత టోకెన్ నెంబర్ ${currentTok}. వేచి ఉన్న రోగులు ${patients.filter(p=>p.status==='waiting').length} మంది. మీ పేరు వచ్చినప్పుడు పిలుస్తారు.`,
+  def:'నమస్కారం! మీ లక్షణాలు వివరంగా చెప్పండి. నేను జ్వరం, దగ్గు, కడుపు నొప్పి, రక్తపోటు, మధుమేహం, చర్మ వ్యాధులు వంటి అన్ని ఆరోగ్య సమస్యలకు సలహా ఇవ్వగలను. మీ సమస్య చెప్పండి.'
+};
+const EN={
+  fever:'For fever drink 8-10 glasses of water and get complete rest. Take Paracetamol if needed. Apply a cool cloth on the forehead. See the doctor if fever persists beyond 2 days.',
+  cough:'For cough mix honey with ginger juice and drink. Do steam inhalation. Drink warm water. Avoid cold drinks. See the doctor if cough continues for a week.',
+  chest:'Chest pain is a medical emergency. Please inform the reception desk immediately. See the doctor right now. Call 108 if needed. Do not wait.',
+  bp:'For blood pressure: reduce salt intake, walk daily, take medicines on time, and reduce stress. Never stop medications without doctor advice.',
+  diabetes:'For diabetes: avoid sweets, exercise daily, take medicines on time, check blood sugar regularly. Protect your feet and never skip doctor visits.',
+  back:'For back pain: use a firm mattress, sit straight, apply warm compress. Avoid heavy lifting. See the doctor if pain persists beyond 3 days.',
+  skin:'For skin issues: keep area clean, drink more water, use sunscreen. If it does not improve in a week, visit the doctor.',
+  sleep:'For sleep problems: avoid phones after 10 PM, drink warm milk before bed, keep room dark, sleep and wake at same time daily.',
+  def:'Hello! I can answer questions about fever, cough, stomach pain, diabetes, blood pressure, skin problems, eye and ear issues, back pain, sleep, nutrition, and any other health concern. Please describe your symptoms clearly and I will help you.'
+};
+
+function getFallback(txt){
+  const t=txt.toLowerCase();
+  const r=lang==='te'?TE:EN;
+  if(/జ్వరం|fever|temp/i.test(t)) return r.fever;
+  if(/దగ్గు|cough/i.test(t)) return r.cough;
+  if(/కడుపు|stomach|vomit|nausea|అజీర్తి|indigestion/i.test(t)) return lang==='te'?TE.stomach:r.def;
+  if(/తలనొప్పి|headache|head.*pain|తల.*నొప్పి/i.test(t)) return lang==='te'?TE.headache:r.def;
+  if(/ఛాతీ|chest|heart|హృదయ/i.test(t)) return r.chest;
+  if(/రక్తపోటు|blood.?pressure|bp|hypertension/i.test(t)) return lang==='te'?TE.bp:EN.bp;
+  if(/మధుమేహం|diabetes|sugar|blood.*sugar/i.test(t)) return lang==='te'?TE.diabetes:EN.diabetes;
+  if(/వీపు|back.*pain|back|నొప్పి/i.test(t)) return lang==='te'?TE.back:EN.back;
+  if(/చర్మ|skin|rash|itching/i.test(t)) return lang==='te'?TE.skin:EN.skin;
+  if(/కళ్ళు|eye|vision/i.test(t)) return lang==='te'?TE.eye:r.def;
+  if(/చెవి|ear/i.test(t)) return lang==='te'?TE.ear:r.def;
+  if(/పళ్ళ|tooth|dental/i.test(t)) return lang==='te'?TE.teeth:r.def;
+  if(/నిద్ర|sleep|insomnia/i.test(t)) return lang==='te'?TE.sleep:EN.sleep;
+  if(/డాక్టర్|doctor/i.test(t)) return lang==='te'?TE.doctor:r.def;
+  if(/టోకెన్|token/i.test(t)) return lang==='te'?TE.token:r.def;
+  return r.def;
+}
+
+async function sendMsg(){
+  const inp=document.getElementById('chat-in');
+  const txt=inp.value.trim();if(!txt) return;
+  inp.value='';appendMsg(txt,'u');showTyping();
+  if(/ఛాతీ నొప్పి|chest pain|breathing|heart attack/i.test(txt)) showEmergency('Patient reported chest pain in AI chat!');
+  await callAI(txt);
+}
+
+async function callAI(msg){
+  const sys=lang==='te'
+    ?`నువ్వు Dr. Arogya Bot — ప్రజా వైద్యశాల, అడ్డంకి లో పని చేసే experienced health assistant.
+
+నీ expertise:
+- జ్వరం, దగ్గు, జలుబు, తలనొప్పి, కడుపు నొప్పి, వాంతులు
+- మధుమేహం, రక్తపోటు, హృదయ సమస్యలు, కీళ్ళ నొప్పులు
+- చర్మ వ్యాధులు, కళ్ళ సమస్యలు, చెవి నొప్పి, పళ్ళ నొప్పి
+- గర్భిణీ ఆరోగ్యం, పిల్లల ఆరోగ్యం, వృద్ధుల ఆరోగ్యం
+- ఆహారం, వ్యాయామం, మానసిక ఆరోగ్యం, నిద్ర సమస్యలు
+- మందుల సమాచారం, వ్యాధి నివారణ చిట్కాలు
+- రక్త పరీక్షలు, X-ray, scan అవసరం ఎప్పుడు
+
+నియమాలు:
+1. ALWAYS తెలుగు script లో మాత్రమే respond చేయి
+2. Simple, clear Telugu — village patients అర్థమయ్యే భాష
+3. Practical home remedies + when to see doctor advice
+4. 4-6 sentences గా చెప్పు
+5. Emergency లక్షణాలకు: వెంటనే డాక్టర్ చూడమని చెప్పు
+6. ఏ ఆరోగ్య ప్రశ్నకైనా helpful గా సమాధానం ఇవ్వు
+7. Current token: ${currentTok}`
+    :`You are Dr. Arogya Bot — an expert health assistant at Praja Vaidyasala, Addanki.
+
+You can answer ALL health questions including:
+- Common illnesses: fever, cough, cold, headache, stomach pain
+- Chronic conditions: diabetes, blood pressure, heart disease, arthritis
+- Skin, eye, ear, dental issues
+- Women's health, child health, elderly care
+- Mental health, sleep disorders, nutrition, exercise
+- Medicine information, disease prevention
+- When blood tests, X-ray or scans are needed
+
+Rules:
+1. Answer in clear, simple English
+2. Give practical home remedies AND when to see a doctor
+3. 4-5 sentences, warm and caring tone
+4. For emergencies (chest pain, stroke symptoms, severe bleeding): say see doctor IMMEDIATELY
+5. For any health topic asked, give helpful guidance
+6. Current token: ${currentTok}`;
+
+  try{
+    const r=await fetch("https://api.anthropic.com/v1/messages",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        model:"claude-sonnet-4-20250514",
+        max_tokens:400,
+        system:sys,
+        messages:[{role:"user",content:msg}]
+      })
+    });
+    if(!r.ok) throw new Error('API error');
+    const d=await r.json();
+    removeTyping();
+    let reply=d.content&&d.content[0]&&d.content[0].text?d.content[0].text:getFallback(msg);
+    if(lang==='te'&&!/[\u0C00-\u0C7F]/.test(reply)) reply=getFallback(msg);
+    appendMsg(reply,'b');speakText(reply);
+  }catch(e){
+    removeTyping();
+    const r=getFallback(msg);
+    appendMsg(r,'b');speakText(r);
+  }
+}
+
+function sq(msg){document.getElementById('chat-in').value=msg;sendMsg();}
+function appendMsg(text,from){
+  const el=document.getElementById('chat-msgs');
+  const d=document.createElement('div');d.className=`msg ${from==='u'?'u':''}`;
+  d.innerHTML=`<div class="mav">${from==='u'?'👤':'🤖'}</div><div class="mb T">${text.replace(/\n/g,'<br>')}</div>`;
+  el.appendChild(d);el.scrollTop=el.scrollHeight;
+}
+function showTyping(){
+  const el=document.getElementById('chat-msgs');
+  const d=document.createElement('div');d.id='typ';d.className='msg';
+  d.innerHTML='<div class="mav">🤖</div><div class="mb"><div class="typing"><span></span><span></span><span></span></div></div>';
+  el.appendChild(d);el.scrollTop=el.scrollHeight;
+}
+function removeTyping(){const t=document.getElementById('typ');if(t)t.remove();}
+
+// ════ MIC ════
+function toggleMic(){
+  if(!('webkitSpeechRecognition' in window||'SpeechRecognition' in window)){showToast('Speech not supported',true);return;}
+  if(isListening){if(recog)recog.stop();isListening=false;document.getElementById('mic-btn').classList.remove('on');return;}
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  recog=new SR();recog.lang=lang==='te'?'te-IN':'en-IN';
+  recog.continuous=false;recog.interimResults=false;
+  recog.onresult=e=>{const t=e.results[0][0].transcript;document.getElementById('chat-in').value=t;isListening=false;document.getElementById('mic-btn').classList.remove('on');sendMsg();};
+  recog.onerror=()=>{isListening=false;document.getElementById('mic-btn').classList.remove('on');showToast('Could not hear. Try again.',true);};
+  recog.onend=()=>{isListening=false;document.getElementById('mic-btn').classList.remove('on');};
+  recog.start();isListening=true;document.getElementById('mic-btn').classList.add('on');
+}
+
+// ════ HALL ════
+(function(){
+  const c=document.getElementById('hstars');
+  for(let i=0;i<80;i++){
+    const s=document.createElement('span');
+    const sz=Math.random()*2.5+.6;
+    s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-delay:${Math.random()*4}s;animation-duration:${2+Math.random()*3}s`;
+    c.appendChild(s);
+  }
+})();
+function updateHall(){
+  document.getElementById('hall-num').textContent=currentTok;
+  const w=patients.filter(p=>p.status==='waiting'||p.status==='emergency');
+  document.getElementById('hall-nxt').textContent=w.length?w[0].token:'—';
+  document.getElementById('hall-qc').textContent=w.length;
+}
+setInterval(()=>{const h=document.getElementById('htime');if(h)h.textContent=new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'});},1000);
+
+// ════ UTILS ════
+function showToast(msg,isErr=false){
+  const t=document.getElementById('toast');
+  document.getElementById('toast-msg').textContent=msg;
+  t.style.background=isErr?'var(--red)':'var(--e2)';
+  t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);
+}
+function showEmergency(msg){
+  const e=document.getElementById('em-alert');
+  document.getElementById('em-msg').textContent=msg;
+  e.classList.add('show');setTimeout(()=>e.classList.remove('show'),7000);
+}
+
+// ════ INIT ════
+document.getElementById('vwave').classList.add('idle');
+renderQueue();updateHall();
+if(SS){SS.getVoices();SS.addEventListener('voiceschanged',()=>SS.getVoices());}
+
+// Show Supabase connect button or load data
+(function initDB(){
+  const saved=JSON.parse(localStorage.getItem('supa_config')||'{}');
+  if(saved.url&&saved.key){
+    SUPA_URL=saved.url; SUPA_KEY=saved.key;
+    setTimeout(()=>showDBStatus(true),600);
+  } else {
+    // Show floating connect button
+    setTimeout(()=>{
+      if(document.getElementById('supa-float-btn')) return;
+      const btn=document.createElement('button');
+      btn.id='supa-float-btn';
+      btn.innerHTML='⚡ Connect Supabase Database';
+      btn.style.cssText='position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#021f2b,#0fa3b1);color:#fff;border:none;border-radius:30px;padding:12px 26px;font-family:Outfit,sans-serif;font-weight:700;font-size:.88rem;cursor:pointer;z-index:9990;box-shadow:0 6px 22px rgba(15,163,177,.5);white-space:nowrap;letter-spacing:.02em;animation:goldGlow 2s ease-in-out infinite;';
+      btn.onclick=()=>{btn.remove();showSupaSetup();};
+      document.body.appendChild(btn);
+    },1000);
+  }
+})();
+</script>
+</body>
+</html>
